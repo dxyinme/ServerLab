@@ -13,7 +13,7 @@ import java.util.Map;
 
 
 @RestController
-public class UserInfo {
+public class UserController {
 
     OperatorUser opU = new OperatorUserImpl();
 
