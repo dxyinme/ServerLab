@@ -3,7 +3,6 @@ package com.spboot.demo.service;
 import com.spboot.demo.SQLcommandline.SQLcommandLineImpl;
 import com.spboot.demo.SQLcommandline.SQLcommandline;
 import com.spboot.demo.domain.House;
-import com.spboot.demo.domain.HouseType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,7 @@ public class HouseServiceImp implements HouseService {
             // 打开链接
             System.out.println("连接数据库...");
             connection = DriverManager.getConnection(DB_URL, adminName, passWord);
-            System.out.println(" 实例化Statement对象...");
+            System.out.println("实例化Statement对象...");
             statement = connection.createStatement();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
