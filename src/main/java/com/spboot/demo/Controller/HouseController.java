@@ -88,7 +88,7 @@ public class HouseController {
         }
     }
 
-    @PostMapping(value="HouseOp/restoreHouse")
+    @PostMapping(value="/HouseOp/restoreHouse")
     @ResponseBody
     public String restoreHouse(@RequestParam("autoId") Integer autoId){
         Integer house_id;
