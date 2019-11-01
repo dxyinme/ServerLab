@@ -2,7 +2,6 @@ package com.spboot.demo.Controller;
 
 
 import com.spboot.demo.User.OperatorUser;
-import com.spboot.demo.User.OperatorUserImpl;
 import com.spboot.demo.User.User;
 import com.spboot.demo.User.UserImpl;
 import org.json.JSONObject;
@@ -14,29 +13,26 @@ import java.util.Map;
 
 @RestController
 public class UserController {
-
-    OperatorUser opU = new OperatorUserImpl();
-
+    OperatorUser opU = dataLinker.opUser;
     @GetMapping(value = "/UserInfo/{Name}")
-    public String QueryUser(@PathVariable("Name") String name){
+    public String QueryUser(@PathVariable("Name") String name) {
         User ret = opU.getUser(name);
         System.out.println(ret.toString());
-        Map<String,String> mp = new HashMap<>();
-        mp.put("name",ret.getName());
-        mp.put("message",ret.getMessage());
+        Map<String, String> mp = new HashMap<>();
+        mp.put("name", ret.getName());
+        mp.put("message", ret.getMessage());
         JSONObject jsString = new JSONObject(mp);
         return jsString.toString();
     }
 
     @PostMapping(value = "/UserOp/signupAPI")
     @ResponseBody
-    public String SignUp(@RequestParam("name") String name){
+    public String SignUp(@RequestParam("name") String name) {
         System.out.println("success:" + name);
         boolean isSuccess = opU.SignUp(name);
-        if(!isSuccess){
+        if (!isSuccess) {
             return "fuck,this name has existed";
-        }
-        else{
+        } else {
             return "sign up success";
         }
     }
@@ -45,12 +41,11 @@ public class UserController {
     @ResponseBody
     public String ChangeInfo(@RequestParam("name") String name,
                              @RequestParam("message") String message) {
-        System.out.println("success : "+ name + "message : " + message);
+        System.out.println("success : " + name + "message : " + message);
         boolean isSuccess = opU.ChangeInfo(new UserImpl(name, message));
-        if(!isSuccess){
+        if (!isSuccess) {
             return "I can't change it!";
-        }
-        else{
+        } else {
             return "change information success";
         }
     }

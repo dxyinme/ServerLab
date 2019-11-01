@@ -1,4 +1,4 @@
-package com.spboot.demo.domain;
+package com.spboot.demo.House;
 
 public enum HouseType {
     NONE(0,0,0),

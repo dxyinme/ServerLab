@@ -1,4 +1,4 @@
-package com.spboot.demo.domain;
+package com.spboot.demo.House;
 
 
 import java.util.List;

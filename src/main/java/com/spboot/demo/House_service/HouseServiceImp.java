@@ -1,8 +1,8 @@
-package com.spboot.demo.service;
+package com.spboot.demo.House_service;
 
 import com.spboot.demo.SQLcommandline.SQLcommandLineImpl;
 import com.spboot.demo.SQLcommandline.SQLcommandline;
-import com.spboot.demo.domain.House;
+import com.spboot.demo.House.House;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,16 +22,16 @@ public class HouseServiceImp implements HouseService {
         connectJdbc();
     }
 
-    public void connectJdbc() {
-        try {
-            // 注册 JDBC 驱动
-            Class.forName(JDBC_DRIVER);
-            // 打开链接
-            System.out.println("连接数据库...");
-            connection = DriverManager.getConnection(DB_URL, adminName, passWord);
-            System.out.println("实例化Statement对象...");
-            statement = connection.createStatement();
-        } catch (ClassNotFoundException | SQLException e) {
+            public void connectJdbc() {
+                try {
+                    // 注册 JDBC 驱动
+                    Class.forName(JDBC_DRIVER);
+                    // 打开链接
+                    System.out.println("connect to house_table");
+                    connection = DriverManager.getConnection(DB_URL, adminName, passWord);
+                    System.out.println("success connect to house_table");
+                    statement = connection.createStatement();
+                } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }

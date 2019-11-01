@@ -4,6 +4,8 @@ import java.sql.SQLException;
 
 public interface OperatorUser {
     /**
+     *  登录方法
+     *  - 暂时还没用到....
      *
      * @param Name the name of user who want to Log in.
      * @return true for success Logged in.

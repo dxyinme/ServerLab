@@ -1,6 +1,5 @@
 package com.spboot.demo.SQLcommandline;
 
-import java.util.List;
 
 public interface SQLcommandline {
     /**

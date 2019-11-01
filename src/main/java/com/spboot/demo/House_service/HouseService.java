@@ -1,7 +1,6 @@
-package com.spboot.demo.service;
+package com.spboot.demo.House_service;
 
-import com.spboot.demo.domain.House;
-import com.spboot.demo.domain.HouseType;
+import com.spboot.demo.House.House;
 
 import javax.jws.WebParam;
 import javax.jws.WebService;

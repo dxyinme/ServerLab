@@ -21,7 +21,7 @@ public class OperatorUserImpl implements OperatorUser {
             Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(DB_URL, adminName, passWord);
             stat = conn.createStatement();
-            System.out.println("connect success");
+            System.out.println("connect user_table success");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {

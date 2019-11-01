@@ -1,13 +1,11 @@
 package com.spboot.demo.Controller;
 
-import com.spboot.demo.domain.HouseType;
-import com.spboot.demo.service.HouseService;
-import com.spboot.demo.service.HouseServiceImp;
+import com.spboot.demo.House_service.HouseService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HouseController {
-    HouseService opH = new HouseServiceImp();
+    HouseService opH = dataLinker.opHouse;
 
     @GetMapping(value = "/HouseInfo/AutoId/{AutoId}")
     public String searchHouseByAutoId(@PathVariable("AutoId") Integer AutoId){
