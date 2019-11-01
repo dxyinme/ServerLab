@@ -19,12 +19,12 @@ public class CommentController {
         if(suc != 0){
             return "add success";
         }
-        return "can't add";
-    }
+                return "can't add";
+                }
 
-    @GetMapping(value = "/CommentInfo/askhouse/{house_id}")
-    public String addComment(@PathVariable("house_id") String house_id){
+@GetMapping(value = "/CommentInfo/askhouse/{house_id}")
+public String addComment(@PathVariable("house_id") String house_id){
         List<String> ret = opC.askAllComment(Integer.parseInt(house_id));
         return ret.toString();
-    }
-}
+        }
+        }
