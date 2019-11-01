@@ -33,4 +33,14 @@ public interface OperatorUser {
      * @return true for success ,
      */
     public boolean ChangeInfo(User user) ;
+
+
+    //  use in Data interaction.
+
+    /**
+     * ask the id of user whose name is 'Name'
+     * @param Name the name of user.
+     * @return a Integer stand the id of this 'Name' , null for there is no this user.
+     */
+    public Integer askId(String Name) ;
 }

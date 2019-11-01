@@ -1,6 +1,7 @@
 package com.spboot.demo.Controller;
 
 import com.spboot.demo.Comment.OperatorComment;
+import com.spboot.demo.User.OperatorUser;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -8,13 +9,13 @@ import java.util.List;
 @RestController
 public class CommentController {
     OperatorComment opC = dataLinker.opComment;
-
+    OperatorUser opU = dataLinker.opUser;
     @PostMapping(value = "/CommentOp/addcomment")
     @ResponseBody
     public String addComment(@RequestParam("comment") String comment,
-                             @RequestParam("user_id") String user_id,
+                             @RequestParam("name") String user,
                              @RequestParam("house_id") String house_id){
-        int suc = opC.addComment(comment , Integer.parseInt(user_id),Integer.parseInt(house_id));
+        int suc = opC.addComment(comment , opU.askId(user) ,Integer.parseInt(house_id));
         if(suc != 0){
             return "add success";
         }

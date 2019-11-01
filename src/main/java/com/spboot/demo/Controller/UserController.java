@@ -42,7 +42,8 @@ public class UserController {
     public String ChangeInfo(@RequestParam("name") String name,
                              @RequestParam("message") String message) {
         System.out.println("success : " + name + "message : " + message);
-        boolean isSuccess = opU.ChangeInfo(new UserImpl(name, message));
+        Integer Id = opU.askId(name);
+        boolean isSuccess = opU.ChangeInfo(new UserImpl(name, message,Id));
         if (!isSuccess) {
             return "I can't change it!";
         } else {

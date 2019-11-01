@@ -66,20 +66,20 @@ public class OperatorUserImpl implements OperatorUser {
     @Override
     public User getUser(String Name) {
         ResultSet rs;
-        String sql_Select = SQLline_user_table.SelectAll("name", Name);
-        try {
-            Integer id = 0;
-            String username = null, message = null;
-            rs = stat.executeQuery(sql_Select);
-            if (rs.next()) {
-                id = rs.getInt("id");
-                username = rs.getString("name");
-                message = rs.getString("message");
-            }
-            System.out.println("success : " + id.toString() + " " + username + " " + message);
-            User ret = new UserImpl(username, message);
-            return ret;
-        } catch (SQLException e) {
+            String sql_Select = SQLline_user_table.SelectAll("name", Name);
+            try {
+                Integer id = 0;
+                String username = null, message = null;
+                rs = stat.executeQuery(sql_Select);
+                if (rs.next()) {
+                    id = rs.getInt("id");
+                    username = rs.getString("name");
+                    message = rs.getString("message");
+                }
+                System.out.println("success : " + id.toString() + " " + username + " " + message);
+                User ret = new UserImpl(username, message,id);
+                return ret;
+            } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -102,6 +102,17 @@ public class OperatorUserImpl implements OperatorUser {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    @Override
+    public Integer askId(String Name) {
+        User u = getUser(Name);
+        if(u == null){
+            return null;
+        }
+        else{
+            return u.getId();
         }
     }
 }

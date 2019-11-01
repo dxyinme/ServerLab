@@ -65,7 +65,7 @@ public void testGetUser() throws Exception {
 public void testChangeInfo() throws Exception { 
 //TODO: Test goes here...
     OperatorUser opU = new OperatorUserImpl();
-    User user = new UserImpl("ra","rara");
+    User user = new UserImpl("ra","rara",23333);
     opU.ChangeInfo(user);
 } 
 

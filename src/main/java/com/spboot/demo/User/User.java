@@ -27,4 +27,10 @@ public interface User {
      */
     public String getName();
 
+    /**
+     *
+     * @return Id of this user.
+     */
+    public Integer getId();
+
 }
