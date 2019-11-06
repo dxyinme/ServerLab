@@ -1,4 +1,4 @@
-package test.com.spboot.demo.User; 
+package com.spboot.demo.User;
 
 import com.spboot.demo.User.OperatorUser;
 import com.spboot.demo.User.OperatorUserImpl;

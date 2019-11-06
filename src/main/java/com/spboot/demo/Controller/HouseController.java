@@ -1,12 +1,13 @@
 package com.spboot.demo.Controller;
 
+import com.spboot.demo.Const.baiduAPI;
 import com.spboot.demo.House_service.HouseService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HouseController {
     HouseService opH = dataLinker.opHouse;
-
+    baiduAPI map_api = dataLinker.baiduapi;
     @GetMapping(value = "/HouseInfo/AutoId/{AutoId}")
     public String searchHouseByAutoId(@PathVariable("AutoId") Integer AutoId){
 
@@ -15,7 +16,8 @@ public class HouseController {
 
     @GetMapping(value = "/HouseInfo/location/{location}")
     public String searchHouseByLocation(@PathVariable("location") String location){
-        return opH.searchHouseByLocation(location).toString();
+        String url = map_api.getMapByAddress(location);
+        return url;
     }
 
     @GetMapping(value = "/HouseInfo/type/{type}")
