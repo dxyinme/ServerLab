@@ -1,4 +1,4 @@
-package com.spboot.demo.SQLcommandline;
+package com.spboot.demo.LogicAPI.SQLcommandline;
 
 
 public interface SQLcommandline {

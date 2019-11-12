@@ -1,7 +1,7 @@
 package com.spboot.demo.House_service;
 
-import com.spboot.demo.SQLcommandline.SQLcommandLineImpl;
-import com.spboot.demo.SQLcommandline.SQLcommandline;
+import com.spboot.demo.LogicAPI.SQLcommandline.SQLcommandLineImpl;
+import com.spboot.demo.LogicAPI.SQLcommandline.SQLcommandline;
 import com.spboot.demo.House.House;
 
 import java.util.ArrayList;

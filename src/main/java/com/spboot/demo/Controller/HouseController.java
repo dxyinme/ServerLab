@@ -17,6 +17,7 @@ public class HouseController {
     @GetMapping(value = "/HouseInfo/location/{location}")
     public String searchHouseByLocation(@PathVariable("location") String location){
         String url = map_api.getMapByAddress(location);
+
         return url;
     }
 
