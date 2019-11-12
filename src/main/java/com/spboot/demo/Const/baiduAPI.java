@@ -31,7 +31,18 @@ public class baiduAPI {
                 "&output=json&ak="+AK;
     }
 
-    public String getCircleSearch(String Type,Double lat ,Double lng , Integer Radius){
+    /**
+     *
+     * <h3>HINT<h3/>
+     * location=lat,lng
+     *
+     * @param Type 想要查的类型
+     * @param lng
+     * @param lat
+     * @param Radius radius (meter)
+     * @return
+     */
+    public String getCircleSearch(String Type,Double lng ,Double lat , Integer Radius){
         return "http://api.map.baidu.com/place/v2/search?query="+
                 Type +
                 "&location="+
@@ -40,17 +51,21 @@ public class baiduAPI {
     }
 
     /**
+     *
+     * center=lng,lat
+     * markers=lng,lat
+     *
      * get the image around the (lat , lng).
-     * @param lat
      * @param lng
+     * @param lat
      * @return a image around this Location.
      */
     public String getImgByLocation(Double lng , Double lat){
-        return "<img style=\"margin:20px\" width=\"280\" height=\"140\" "
+        return "<img style=\"margin:20px\" width=\"150\" height=\"150\" "
                 +"src=\"http://api.map.baidu.com/staticimage/v2?"
                 +"ak="+AK
                 +"&center=" + lng.toString() + "," + lat.toString()
                 +"&markers=" + lng.toString() + "," + lat.toString()
-                +"&width=280&height=140&zoom=13\"/>";
+                +"&width=150&height=150&zoom=13\"/>";
     }
 }
