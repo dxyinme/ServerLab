@@ -1,0 +1,356 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Home</title>
+    <!---css--->
+    <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="css/style.css" rel='stylesheet' type='text/css' />
+    <!---css--->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Real Space Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!---js--->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <!---js--->
+    <!---fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+    <!---fonts-->
+    <script src="js/responsiveslides.min.js"></script>
+    <script>
+
+    </script>
+    <link href="css/owl.carousel.css" rel="stylesheet">
+    <script src="js/owl.carousel.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#owl-demo").owlCarousel({
+                items : 1,
+                lazyLoad : true,
+                autoPlay : true,
+                navigation : false,
+                navigationText :  false,
+                pagination : true,
+            });
+        });
+    </script>
+
+</head>
+<body>
+
+<!---header--->
+<div class="header-section">
+    <div class="container">
+        <div class="head-top">
+            <div class="email">
+                <ul>
+                    <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email: <a href="mailto:info@example.com">info@example.com</a> </li>
+                    <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
+                    <li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal1">Register</a></li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <nav class="navbar navbar-default">
+            <!---Brand and toggle get grouped for better mobile display--->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <h1><a href="index.html"><span>DXY </span>House</a></h1>
+                </div>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.html">Home <span class="sr-only">(current)</span></a></li>
+                </ul>
+                <div class="phone">
+                    <span><i class="glyphicon glyphicon-phone" aria-hidden="true"></i>1-999-999-999</span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </nav>
+    </div>
+</div>
+<!---header--->
+<!---banner--->
+<!---banner--->
+<div class="content">
+    <div class="place-section">
+        <div class="container">
+            <h2>房源搜索</h2>
+            <div class="place-grids">
+                <div class="col-md-3 place-grid" id="location1">
+                    <h5>省、直辖市</h5><br><br>
+                    <select class="sel">
+                        <option value="">全部</option>
+                        <option value="南岗">南岗</option>
+                        <option value="道里">道里</option>
+                    </select>
+                </div>
+                <div class="col-md-3 place-grid" id="location2">
+                    <h5>市</h5><br><br>
+                    <select class="sel">
+                        <option value="">全部</option>
+                        <option value="南岗">南岗</option>
+                        <option value="道里">道里</option>
+                    </select>
+                </div>
+                <div class="col-md-3 place-grid" id="location3">
+                    <h5>县镇</h5><br><br>
+                    <select class="sel">
+                        <option value="">全部</option>
+                        <option value="南岗">南岗</option>
+                        <option value="道里">道里</option>
+                    </select>
+                </div>
+                <div class="col-md-3 place-grid" id="location4">
+                    <h5>街道区域</h5><br><br>
+                    <select class="sel">
+                        <option value="">全部</option>
+                        <option value="南岗">南岗</option>
+                        <option value="道里">道里</option>
+                    </select>
+                </div>
+                <div class="col-md-3 place-grid">
+                    <h5>类型</h5><br>
+                    <select class="sel" id="type">
+                        <option value=0>不限</option>
+                        <option value=1>一室</option>
+                        <option value=2>两室</option>
+                    </select>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="place-grids">
+                <div class="col-md-2 place-grid1">
+                    <h5>最小面积</h5><br>
+                    <input type="text" id="minarea" placeholder="最小面积" />
+                </div>
+                <div class="col-md-2 place-grid1">
+                    <h5>最大面积</h5><br>
+                    <input type="text" id="maxarea" placeholder="最大面积" />
+                </div>
+                <div class="col-md-2 place-grid1">
+                    <h5>最低价格</h5><br>
+                    <input type="text" id="minprice" placeholder="最低价" />
+                </div>
+                <div class="col-md-2 place-grid1">
+                    <h5>最高价格</h5><br>
+                    <input type="text" id="maxprice" placeholder="最高价" />
+                </div>
+                <div class="col-md-4 search">
+                    <input type="submit" value="搜索" id="query-btn">
+                    <script>
+                        $("#query-btn").click(function() {
+                            //TODO  url修改
+                            var url = "http://localhost:8080/HouseInfo/open/searchFieldHouses";
+                            var location1 = $("#location1").val();
+                            var location2 = $("#location2").val();
+                            var location3 = $("#location3").val();
+                            var location4 = $("#location4").val();
+                            var type = $("#type").val();
+                            var minarea = $("#minarea").val();
+                            var maxarea = $("#maxarea").val();
+                            var minprice = $("#minprice").val();
+                            var maxprice = $("#maxprice").val();
+
+                            var param = '{"location1":"' + location1 + '","location2":"'+location2+'","location3":"'+location3+'","location4":,"'+location4+'","type":' + type + ',"minArea":' + minarea +
+                                ',"maxArea":' + maxarea + ',"minPrice":' + minprice + ',"minPrice":' + maxprice+'}';
+
+                            $.ajax({
+                                url: url,
+                                type: "POST",
+                                data: param,
+                                contentType: "application/json;charset=UTF-8",
+                                dataType: "json",
+                                success: function(str) {
+                                    //清空
+                                    $(str).each(function(index, e) {
+                                        if(index === 0){
+                                            document.getElementById("message-1-img").src = e.img;
+                                            $("#message-1-location").html(e.location);
+                                            $("#message-1-price").html(e.price);
+                                            $("#message-1-other").html(e.area);
+                                        } else if(index === 1){
+                                            document.getElementById("message-2-img").src = e.img;
+                                            $("#message-2-location").html(e.location);
+                                            $("#message-2-price").html(e.price);
+                                            $("#message-2-other").html(e.area);
+                                        } else if(index === 2){
+                                            document.getElementById("message-3-img").src = e.img;
+                                            $("#message-3-location").html(e.location);
+                                            $("#message-3-price").html(e.price);
+                                            $("#message-3-other").html(e.area);
+                                        } else if(index === 3){
+                                            document.getElementById("message-4-img").src = e.img;
+                                            $("#message-4-location").html(e.location);
+                                            $("#message-4-price").html(e.price);
+                                            $("#message-4-other").html(e.area);
+                                        }
+                                    });
+                                },
+                                error: function(str) {
+                                    //$("#message-query").html("查找失败")
+                                }
+                            });
+                        });
+                    </script>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="offering">
+        <div class="container">
+            <h3>想看二手房 就选DXY</h3>
+            <div class="offer-grids">
+                <div class="col-md-6 offer-grid">
+                    <div class="offer-grid1">
+                        <h4><a href="single.html" id="message-1-location"></a></h4>
+                        <div class="offer1">
+                            <div class="offer-left">
+                                <a href="single.html" class="mask"><img id="message-1-img" src="images/p3.jpg" class="img-responsive zoom-img" alt=""/></a>
+                            </div>
+                            <div class="offer-right">
+                                <h5><label>¥</label> <span id="message-1-price"></span></h5>
+                                <div id="message-1-other"></div>
+                                <a href="single.html"class="button1">查看</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 offer-grid">
+                    <div class="offer-grid1">
+                        <h4><a href="single.html" id="message-2-location"></a></h4>
+                        <div class="offer1">
+                            <div class="offer-left">
+                                <a href="single.html" class="mask"><img src="images/p3.jpg" class="img-responsive zoom-img" alt=""/></a>
+                            </div>
+                            <div class="offer-right">
+                                <h5><label>¥</label> <span id="message-2-price"></span></h5>
+                                <div id="message-2-other"></div>
+                                <a href="single.html"class="button1">查看</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="offer-grids">
+                <div class="col-md-6 offer-grid">
+                    <div class="offer-grid1">
+                        <h4><a href="single.html" id="message-3-location"></a></h4>
+                        <div class="offer1">
+                            <div class="offer-left">
+                                <a href="single.html" class="mask"><img src="images/p3.jpg" class="img-responsive zoom-img" alt=""/></a>
+                            </div>
+                            <div class="offer-right">
+                                <h5><label>¥</label> <span id="message-3-price"></span></h5>
+                                <div id="message-3-other"></div>
+                                <a href="single.html"class="button1">查看</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 offer-grid">
+                <div class="offer-grid1">
+                    <h4><a href="single.html" id="message-4-location"></a></h4>
+                    <div class="offer1">
+                        <div class="offer-left">
+                            <a href="single.html" class="mask"><img src="images/p3.jpg" class="img-responsive zoom-img" alt=""/></a>
+                        </div>
+                        <div class="offer-right">
+                            <h5><label>¥</label> <span id="message-4-price"></span></h5>
+                            <div id="message-4-other"></div>
+                            <a href="single.html"class="button1">查看</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- login -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-info">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body real-spa">
+                <div class="login-grids">
+                    <div class="login">
+
+                        <div class="login-right">
+                            <form>
+                                <h3>Login</h3>
+                                <input type="text" value="Enter your Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your Email';}" required="">
+                                <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+                                <h4><a href="#">Forgot password</a> / <a href="#">Create new password</a></h4>
+                                <div class="single-bottom">
+                                    <input type="checkbox"  id="brand" value="">
+                                    <label for="brand"><span></span>Remember Me.</label>
+                                </div>
+                                <input type="submit" value="Login Now" >
+                            </form>
+                        </div>
+
+                    </div>
+                    <p>By logging in you agree to our <a href="#">Terms</a> and <a href="#">Conditions</a> and <a href="#">Privacy Policy</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //login -->
+<!-- Register -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-info">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body real-spa">
+                <div class="login-grids">
+                    <div class="login">
+                        <div class="login-right">
+                            <form>
+                                <h3>Register </h3>
+                                <input type="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+                                <input type="text" value="Mobile number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mobile number';}" required="">
+                                <input type="text" value="Email id" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email id';}" required="">
+                                <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+
+                                <input type="submit" value="Register Now" >
+                            </form>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <p>By logging in you agree to our <a href="#">Terms</a> and <a href="#">Conditions</a> and <a href="#">Privacy Policy</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //Register -->
+</body>
+</html>

@@ -5,6 +5,7 @@ import com.spboot.demo.House.House;
 import com.spboot.demo.House.HouseFind;
 import com.spboot.demo.House_service.HouseService;
 import com.spboot.demo.LogicAPI.Urlcov.Urlcov;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@Controller
 public class HouseInfo {
     HouseService opH = dataLinker.opHouse;
     baiduAPI bua = dataLinker.baiduapi;
@@ -22,7 +24,7 @@ public class HouseInfo {
      * 调用方式
      *
      *
-     * /HouseInfo/open/QueryMapCircle?address=地名
+     * /HouseInfo/open/QueryMapImg?address=地名
      * 返回一个<img>
      * sample:
      * <img style="margin:20px" width="280" height="140" src="http://api.map.baidu.com/staticimage/v2?ak=E4805d16520de693a3fe707cdc962045&width=280&height=140&zoom=1"/>
@@ -37,6 +39,16 @@ public class HouseInfo {
         System.out.println(bua.getImgByLocation(loc.get("lng") , loc.get("lat")));
         return bua.getImgByLocation(loc.get("lng") , loc.get("lat"));
     }
+    /*
+     * 调用方式
+     *
+     *
+     * /HouseInfo/open/QueryMapCircle?address=地名
+     * 返回一个<img>
+     * sample:
+     * <img style="margin:20px" width="280" height="140" src="http://api.map.baidu.com/staticimage/v2?ak=E4805d16520de693a3fe707cdc962045&width=280&height=140&zoom=1"/>
+     *
+     */
 
     @RequestMapping(value="/HouseInfo/open/QueryMapCircle")
     public String QueryMapCircle(String address,String type , Integer Radius){
@@ -49,8 +61,10 @@ public class HouseInfo {
         return bua.getCircleSearch(type,loc.get("lng"),loc.get("lat"),Radius);
     }
 
-    @RequestMapping(value="/HouseInfo/open/searchFieldHouses")
+    @RequestMapping(value="/HouseInfo/open/searchFieldHouses", method = RequestMethod.POST)
+    @ResponseBody
     public List<House> searchFieldHouses(@RequestBody HouseFind hf){
+        System.err.println("dddd");
         List<House> res, ret;
         Map<String , String> loc = new HashMap<>();
         loc.put("province",hf.getLocation1());
