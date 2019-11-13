@@ -1,11 +1,15 @@
 package com.spboot.demo.Controller;
 
 import com.spboot.demo.Const.baiduAPI;
+import com.spboot.demo.House.House;
+import com.spboot.demo.House.HouseFind;
 import com.spboot.demo.House_service.HouseService;
 import com.spboot.demo.LogicAPI.Urlcov.Urlcov;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -43,5 +47,25 @@ public class HouseInfo {
         String url = bua.getlLocationByAddress(address);
         Map<String , Double> loc = urlcatcher.getPosition(url);
         return bua.getCircleSearch(type,loc.get("lng"),loc.get("lat"),Radius);
+    }
+
+    @RequestMapping(value="/HouseInfo/open/searchFieldHouses")
+    public List<House> searchFieldHouses(@RequestBody HouseFind hf){
+        List<House> res, ret;
+        Map<String , String> loc = new HashMap<>();
+        loc.put("province",hf.getLocation1());
+        loc.put("city",hf.getLocation2());
+        loc.put("county",hf.getLocation3());
+        loc.put("road",hf.getLocation4());
+        res = opH.searchFieldHouses(loc);
+        ret = new ArrayList<>();
+        for(House ho : res){
+            if(ho.getType() == hf.getType() &&
+                hf.getMinArea() <= ho.getArea() && ho.getArea() <= hf.getMaxArea() &&
+                hf.getMinPrice() <= ho.getPrice() && ho.getArea() <= hf.getMaxPrice()){
+                ret.add(ho);
+            }
+        }
+        return ret;
     }
 }
