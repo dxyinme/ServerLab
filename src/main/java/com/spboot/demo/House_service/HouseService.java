@@ -5,6 +5,7 @@ import com.spboot.demo.House.House;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 import java.util.List;
+import java.util.Map;
 
 @WebService
 public interface HouseService {
@@ -12,7 +13,7 @@ public interface HouseService {
     /**
      * add a new house.
      *
-     * @param location the location e.g."南岗区……"
+     * @param location the location e.g."XXX 省/自治区 XXX 市/州 XXX 市/县/区 XXX镇/街道"
      * @param area the area , square meters
      * @param price the price  , yuan
      * @param type  the type
@@ -119,4 +120,11 @@ public interface HouseService {
      * @return all houses state is 0(deleted or sold)
      */
     public List<House> searchSoldHouses();
+
+    /**
+     * search all houses in this location
+     * @param Loc min floor
+     * @return all houses in this location
+     */
+    public List<House> searchFieldHouses(Map<String , String> Loc);
 }

@@ -1,5 +1,6 @@
 package com.spboot.demo.Comment;
 
+import com.spboot.demo.Const.const_oct;
 import com.spboot.demo.LogicAPI.SQLcommandline.SQLcommandLineImpl;
 import com.spboot.demo.LogicAPI.SQLcommandline.SQLcommandline;
 
@@ -12,8 +13,8 @@ public class OperatorCommentImpl implements OperatorComment{
 
     static final private String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final private String DB_URL = "jdbc:mysql://localhost:3306/house_users";
-    static final private String adminName = "root";
-    static final private String passWord = "13705034784";
+    static final private String adminName = const_oct.admin;
+    static final private String passWord = const_oct.password;
 
     static private Connection conn;
     static private Statement stat;

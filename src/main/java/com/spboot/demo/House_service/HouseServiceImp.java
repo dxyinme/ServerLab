@@ -1,5 +1,6 @@
 package com.spboot.demo.House_service;
 
+import com.spboot.demo.Const.const_oct;
 import com.spboot.demo.LogicAPI.SQLcommandline.SQLcommandLineImpl;
 import com.spboot.demo.LogicAPI.SQLcommandline.SQLcommandline;
 import com.spboot.demo.House.House;
@@ -7,31 +8,34 @@ import com.spboot.demo.House.House;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
+import java.util.Map;
 
 public class HouseServiceImp implements HouseService {
 
     static final private String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final private String DB_URL = "jdbc:mysql://localhost:3306/house_users";
-    static final private String adminName = "root";
-    static final private String passWord = "13705034784";
+    static final private String adminName = const_oct.admin;
+    static final private String passWord = const_oct.password;
     private SQLcommandline sqlcom = new SQLcommandLineImpl("house_table");
     private Connection connection;
     private Statement statement;
+
+    private LocationAssistant LA = new LocationAssistant();
 
     public HouseServiceImp() {
         connectJdbc();
     }
 
-            public void connectJdbc() {
-                try {
-                    // 注册 JDBC 驱动
-                    Class.forName(JDBC_DRIVER);
-                    // 打开链接
-                    System.out.println("connect to house_table");
-                    connection = DriverManager.getConnection(DB_URL, adminName, passWord);
-                    System.out.println("success connect to house_table");
-                    statement = connection.createStatement();
-                } catch (ClassNotFoundException | SQLException e) {
+    public void connectJdbc() {
+        try {
+            // 注册 JDBC 驱动
+            Class.forName(JDBC_DRIVER);
+            // 打开链接
+            System.out.println("connect to house_table");
+            connection = DriverManager.getConnection(DB_URL, adminName, passWord);
+            System.out.println("success connect to house_table");
+            statement = connection.createStatement();
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
@@ -247,7 +251,7 @@ public class HouseServiceImp implements HouseService {
     public List<House> searchHouses() {
         List<House> list = new ArrayList<House>();
         try {
-            String sqlQuery = "SELECT * FROM house_table WHERE house_state = "+1;
+            String sqlQuery = "SELECT * FROM house_table WHERE house_state = "+"1";
             ResultSet rs = statement.executeQuery(sqlQuery);
             if (rs.next()) {
                 list = getHouses(rs);
@@ -262,13 +266,23 @@ public class HouseServiceImp implements HouseService {
     public List<House> searchSoldHouses() {
         List<House> list = new ArrayList<House>();
         try {
-            String sqlQuery = "SELECT * FROM house_table WHERE house_state = "+0;
+            String sqlQuery = "SELECT * FROM house_table WHERE house_state = "+"0";
             ResultSet rs = statement.executeQuery(sqlQuery);
             if (rs.next()) {
                 list = getHouses(rs);
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<House> searchFieldHouses(Map<String, String> Loc) {
+        List<House> list = new ArrayList<>();
+        List<Integer> list_id = LA.searchFieldId(Loc);
+        for(int i=0;i<list_id.size();i++){
+            list.add(searchHouseByAutoId(list_id.get(i)));
         }
         return list;
     }

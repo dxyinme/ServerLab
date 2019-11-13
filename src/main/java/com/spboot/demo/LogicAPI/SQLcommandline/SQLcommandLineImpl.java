@@ -21,6 +21,26 @@ public class SQLcommandLineImpl implements SQLcommandline {
         return sb.toString();
     }
 
+
+    @Override
+    public String Select(String[] valueList, String[] value) {
+        StringBuilder sb = new StringBuilder("SELECT * FROM ");
+        sb.append(tableName);
+        sb.append(" WHERE ");
+        for(int i=0;i<value.length;i++){
+            if(value[i] == null || value[i] == "null" || valueList[i] == null || valueList[i] == "null"){
+                continue;
+            }
+            sb.append(valueList[i]);
+            sb.append(" = '");
+            sb.append(value[i] + "'");
+            sb.append(" AND ");
+        }
+        sb.append("1");
+        System.err.println(sb.toString());
+        return sb.toString();
+    }
+
     @Override
     public String Insert(String[] valueList, String[] value) {
         StringBuilder sb = new StringBuilder("INSERT INTO " + tableName + " (");
@@ -35,6 +55,9 @@ public class SQLcommandLineImpl implements SQLcommandline {
         }
         for (int i = 0; i < value.length; i++) {
             String o = value[i];
+            if(o == null){
+                o = "null";
+            }
             sb.append("'");
             sb.append(o);
             sb.append("'");

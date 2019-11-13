@@ -11,6 +11,16 @@ public interface SQLcommandline {
      */
     public String SelectAll( String valueParam, String value);
 
+
+    /**
+     *  find all attributes whose 'valueList' is 'value' .
+     *
+     * @param valueList the value contain.
+     * @param value the value correspond to the value list .
+     * @return
+     */
+    public String Select(String[] valueList , String[] value);
+
     /**
      *
      * @param valueList the value contain.
