@@ -61,11 +61,10 @@ public class baiduAPI {
      * @return a image around this Location.
      */
     public String getImgByLocation(Double lng , Double lat){
-        return "<img style=\"margin:20px\" width=\"150\" height=\"150\" "
-                +"src=\"http://api.map.baidu.com/staticimage/v2?"
+        return "src=\"http://api.map.baidu.com/staticimage/v2?"
                 +"ak="+AK
                 +"&center=" + lng.toString() + "," + lat.toString()
                 +"&markers=" + lng.toString() + "," + lat.toString()
-                +"&width=150&height=150&zoom=13\"/>";
+                +"&width=150&height=150&zoom=13\"";
     }
 }
