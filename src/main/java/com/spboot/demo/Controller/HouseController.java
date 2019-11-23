@@ -10,7 +10,7 @@ public class HouseController {
     baiduAPI map_api = dataLinker.baiduapi;
     @GetMapping(value = "/HouseInfo/AutoId/{AutoId}")
     public String searchHouseByAutoId(@PathVariable("AutoId") Integer AutoId){
-
+        System.out.println("OK" + AutoId.toString());
         return opH.searchHouseByAutoId(AutoId).toString();
     }
 

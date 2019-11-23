@@ -1,5 +1,8 @@
 package com.spboot.demo.House;
 
+import com.spboot.demo.Const.const_oct;
+
+
 public class HouseFind {
     private Integer autoId;
     private Integer state;
@@ -26,6 +29,41 @@ public class HouseFind {
         this.maxPrice = maxPrice;
         this.type = type;
     }
+
+    public HouseFind(String location1, String location2, String location3, String location4, Integer minArea, Integer maxArea, Integer minPrice, Integer maxPrice, Integer type) {
+        this.autoId = 0;
+        this.state = 1;
+        this.location1 = location1;
+        this.location2 = location2;
+        this.location3 = location3;
+        this.location4 = location4;
+        this.minArea = minArea;
+        this.maxArea = maxArea;
+        this.minPrice = minPrice;
+        this.maxPrice = maxPrice;
+        this.type = type;
+    }
+
+    public HouseFind(String data) {
+        String[] params = data.split("_");
+        this.autoId = 0;
+        this.state = 1;
+        this.type = 1;
+        for(int i=0;i<params.length;i++){
+        String[] opn = params[i].split("=");
+        switch (opn[0]){
+            case "province" : this.location1 = opn[1];break;
+            case "city" : this.location2 = opn[1];break;
+            case "county" : this.location3 = opn[1];break;
+            case "road" : this.location4 = opn[1];break;
+            case "minArea" : this.minArea = Integer.parseInt(opn[1]);break;
+            case "maxArea" : this.maxArea = Integer.parseInt(opn[1]);break;
+            case "minPrice" : this.minPrice = Integer.parseInt(opn[1]);break;
+            case "type" : this.type = Integer.parseInt(opn[1]);break;
+        }
+    }
+
+}
 
     public Integer getAutoId() {
         return autoId;
@@ -76,6 +114,9 @@ public class HouseFind {
     }
 
     public Integer getMinArea() {
+        if(minArea == null){
+            return  - const_oct.INF;
+        }
         return minArea;
     }
 
@@ -84,6 +125,9 @@ public class HouseFind {
     }
 
     public Integer getMaxArea() {
+        if(maxArea == null){
+            return const_oct.INF;
+        }
         return maxArea;
     }
 
@@ -92,6 +136,9 @@ public class HouseFind {
     }
 
     public Integer getMinPrice() {
+        if(minPrice == null){
+            return  - const_oct.INF;
+        }
         return minPrice;
     }
 
@@ -100,6 +147,9 @@ public class HouseFind {
     }
 
     public Integer getMaxPrice() {
+        if(maxPrice == null){
+            return const_oct.INF;
+        }
         return maxPrice;
     }
 
@@ -115,6 +165,5 @@ public class HouseFind {
         this.type = type;
     }
 
-    public HouseFind(){};
 
 }

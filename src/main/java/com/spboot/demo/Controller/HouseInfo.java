@@ -5,9 +5,12 @@ import com.spboot.demo.House.House;
 import com.spboot.demo.House.HouseFind;
 import com.spboot.demo.House_service.HouseService;
 import com.spboot.demo.LogicAPI.Urlcov.Urlcov;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -61,12 +64,29 @@ public class HouseInfo {
         return bua.getCircleSearch(type,loc.get("lng"),loc.get("lat"),Radius);
     }
 
-    @RequestMapping(value="/HouseInfo/open/searchFieldHouses", method = RequestMethod.POST)
+
+    /**
+     * json格式
+     * /HouseInfo/open/searchFieldHouses?data=province=XXX_city=XXX_...
+     * @param data
+     * @return
+     */
+    @RequestMapping(value="/HouseInfo/open/searchFieldHouses")
     @ResponseBody
-    public List<House> searchFieldHouses(@RequestBody HouseFind hf){
-        System.err.println("dddd");
+    public List<House> searchFieldHouses(String data){
+        System.err.println(data);
+        System.out.println("ddd");
         List<House> res, ret;
         Map<String , String> loc = new HashMap<>();
+
+        try {
+            data = URLDecoder.decode(data, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            System.err.println("error decode character");
+            e.printStackTrace();
+        }
+
+        HouseFind hf = new HouseFind(data);
         loc.put("province",hf.getLocation1());
         loc.put("city",hf.getLocation2());
         loc.put("county",hf.getLocation3());
@@ -80,6 +100,7 @@ public class HouseInfo {
                 ret.add(ho);
             }
         }
+        //System.out.println(ret.size());
         return ret;
     }
 }
