@@ -16,6 +16,11 @@ public class HouseFind {
     private Integer maxPrice;
     private Integer type;
 
+    private Integer parseInt(String I){
+        if(I == null)return null;
+        else return Integer.parseInt(I);
+    }
+
     public HouseFind(Integer autoId, Integer state, String location1, String location2, String location3, String location4, Integer minArea, Integer maxArea, Integer minPrice, Integer maxPrice, Integer type) {
         this.autoId = autoId;
         this.state = state;
@@ -50,16 +55,20 @@ public class HouseFind {
         this.state = 1;
         this.type = 1;
         for(int i=0;i<params.length;i++){
-        String[] opn = params[i].split("=");
+        String[] opnc = params[i].split("=");
+        String[] opn = new String[2];
+        opn[0] = opnc[0];
+        if(opnc.length == 1)opn[1] = null;
+        else opn[1] = opnc[1];
         switch (opn[0]){
             case "province" : this.location1 = opn[1];break;
             case "city" : this.location2 = opn[1];break;
             case "county" : this.location3 = opn[1];break;
             case "road" : this.location4 = opn[1];break;
-            case "minArea" : this.minArea = Integer.parseInt(opn[1]);break;
-            case "maxArea" : this.maxArea = Integer.parseInt(opn[1]);break;
-            case "minPrice" : this.minPrice = Integer.parseInt(opn[1]);break;
-            case "type" : this.type = Integer.parseInt(opn[1]);break;
+            case "minArea" : this.minArea = parseInt(opn[1]);break;
+            case "maxArea" : this.maxArea = parseInt(opn[1]);break;
+            case "minPrice" : this.minPrice = parseInt(opn[1]);break;
+            case "type" : this.type = parseInt(opn[1]);break;
         }
     }
 

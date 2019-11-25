@@ -19,4 +19,13 @@ public class CommentImpl implements Comment{
     public String getComm() {
         return comm;
     }
+
+    @Override
+    public Integer getUserId(){
+        return userId;
+    }
+
+    public Integer getHouseId(){
+        return houseId;
+    }
 }

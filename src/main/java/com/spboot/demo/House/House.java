@@ -14,6 +14,7 @@ public class House{
     private Integer buildTime;
     private Integer timeLimit;
     private Integer userId;
+    private String img;
     private List<Integer> commentsId;
 
     /*
@@ -35,6 +36,7 @@ public class House{
         this.buildTime = buildTime;
         this.timeLimit = timeLimit;
         this.userId = userId;
+        this.img =  "/image/"+ autoId + ".jpg";
     }
 
     public House(Integer autoId, Integer state, String location, Integer area, Integer price, Integer type, Integer floor, Integer buildTime, Integer timeLimit, Integer userId, List<Integer> commentsId) {
@@ -49,6 +51,7 @@ public class House{
         this.timeLimit = timeLimit;
         this.userId = userId;
         this.commentsId = commentsId;
+        this.img =  "/image/"+ autoId + ".jpg";
     }
 
     public String getLocation() {
@@ -137,6 +140,10 @@ public class House{
 
     public void setCommentsId(List<Integer> commentsId) {
         this.commentsId = commentsId;
+    }
+
+    public String getImg(){
+        return this.img;
     }
 
     @Override

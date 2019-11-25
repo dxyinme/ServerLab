@@ -67,20 +67,20 @@ public class OperatorUserImpl implements OperatorUser {
     @Override
     public User getUser(String Name) {
         ResultSet rs;
-            String sql_Select = SQLline_user_table.SelectAll("name", Name);
-            try {
-                Integer id = 0;
-                String username = null, message = null;
-                rs = stat.executeQuery(sql_Select);
-                if (rs.next()) {
-                    id = rs.getInt("id");
-                    username = rs.getString("name");
-                    message = rs.getString("message");
-                }
-                System.out.println("success : " + id.toString() + " " + username + " " + message);
-                User ret = new UserImpl(username, message,id);
-                return ret;
-            } catch (SQLException e) {
+        String sql_Select = SQLline_user_table.SelectAll("name", Name);
+        try {
+            Integer id = 0;
+            String username = null, message = null;
+            rs = stat.executeQuery(sql_Select);
+            if (rs.next()) {
+                id = rs.getInt("id");
+                username = rs.getString("name");
+                message = rs.getString("message");
+            }
+            System.out.println("success : " + id.toString() + " " + username + " " + message);
+            User ret = new UserImpl(username, message,id);
+            return ret;
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -115,5 +115,19 @@ public class OperatorUserImpl implements OperatorUser {
         else{
             return u.getId();
         }
+    }
+
+    @Override
+    public String askName(Integer AutoId) {
+        String sqlSelect = SQLline_user_table.Select( new String[]{"id"}, new String[]{AutoId.toString()});
+        try{
+            ResultSet rs = stat.executeQuery(sqlSelect);
+            if(rs.next()){
+                return rs.getString("name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

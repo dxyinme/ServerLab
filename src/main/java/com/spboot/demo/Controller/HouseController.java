@@ -1,17 +1,20 @@
 package com.spboot.demo.Controller;
 
 import com.spboot.demo.Const.baiduAPI;
+import com.spboot.demo.House.House;
 import com.spboot.demo.House_service.HouseService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin // 允许外部访问
 public class HouseController {
     HouseService opH = dataLinker.opHouse;
     baiduAPI map_api = dataLinker.baiduapi;
     @GetMapping(value = "/HouseInfo/AutoId/{AutoId}")
-    public String searchHouseByAutoId(@PathVariable("AutoId") Integer AutoId){
+    public House searchHouseByAutoId(@PathVariable("AutoId") Integer AutoId){
+        System.out.println(AutoId);
         System.out.println("OK" + AutoId.toString());
-        return opH.searchHouseByAutoId(AutoId).toString();
+        return opH.searchHouseByAutoId(AutoId);
     }
 
     @GetMapping(value = "/HouseInfo/location/{location}")

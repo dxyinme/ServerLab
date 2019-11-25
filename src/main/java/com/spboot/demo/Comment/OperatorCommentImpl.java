@@ -52,21 +52,28 @@ public class OperatorCommentImpl implements OperatorComment{
     }
 
     @Override
-    public List<String> askAllComment(Integer houseId) {
+    public List<CommentImpl> askAllComment(Integer houseId) {
         String sql_ask = SQLline_user_table.SelectAll(
                 "house_id",
                 houseId.toString()
         );
-        List<String> ret = new ArrayList<>();
+        List<CommentImpl> ret = new ArrayList<>();
         try{
             ResultSet rs;
             rs = stat.executeQuery(sql_ask);
             while(rs.next()){
-                ret.add(rs.getString("comment"));
+                ret.add(new CommentImpl(rs.getString("comment")
+                        , rs.getInt("user_id")
+                        , rs.getInt("house_id")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        /*
+        for(CommentImpl c : ret){
+            System.out.println(c.getUserId());
+        }
+        */
         return ret;
     }
 }

@@ -16,7 +16,7 @@ public interface OperatorComment {
     /**
      * return a list of all the comments of house 'houseId'
      * @param houseId the id of house
-     * @return List<String> for all the comments , not a null.
+     * @return List<CommentImpl> for all the comments , not a null.
      */
-    public List<String> askAllComment(Integer houseId);
+    public List<CommentImpl> askAllComment(Integer houseId);
 }

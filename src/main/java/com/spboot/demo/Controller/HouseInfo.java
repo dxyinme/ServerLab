@@ -18,6 +18,7 @@ import java.util.Map;
 
 @RestController
 @Controller
+@CrossOrigin // 允许外部访问
 public class HouseInfo {
     HouseService opH = dataLinker.opHouse;
     baiduAPI bua = dataLinker.baiduapi;
@@ -72,10 +73,11 @@ public class HouseInfo {
      * @return
      */
     @RequestMapping(value="/HouseInfo/open/searchFieldHouses")
+    //@CrossOrigin(allowCredentials = "true",allowedHeaders = "*")
     @ResponseBody
     public List<House> searchFieldHouses(String data){
         System.err.println(data);
-        System.out.println("ddd");
+        //System.out.println("ddd");
         List<House> res, ret;
         Map<String , String> loc = new HashMap<>();
 
@@ -92,7 +94,15 @@ public class HouseInfo {
         loc.put("county",hf.getLocation3());
         loc.put("road",hf.getLocation4());
         res = opH.searchFieldHouses(loc);
+        System.out.println(res);
         ret = new ArrayList<>();
+        /*
+        System.out.println("type:"+hf.getType());
+        System.out.println("mp:"+hf.getMaxPrice());
+        System.out.println("minp:"+hf.getMinPrice());
+        System.out.println("ma:"+hf.getMaxPrice());
+        System.out.println("mina:"+hf.getMinArea());
+        */
         for(House ho : res){
             if(ho.getType() == hf.getType() &&
                 hf.getMinArea() <= ho.getArea() && ho.getArea() <= hf.getMaxArea() &&
@@ -100,6 +110,7 @@ public class HouseInfo {
                 ret.add(ho);
             }
         }
+        System.out.println(ret);
         //System.out.println(ret.size());
         return ret;
     }

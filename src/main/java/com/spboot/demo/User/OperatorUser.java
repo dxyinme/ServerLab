@@ -43,4 +43,11 @@ public interface OperatorUser {
      * @return a Integer stand the id of this 'Name' , null for there is no this user.
      */
     public Integer askId(String Name) ;
+
+    /**
+     * ask the Name of user whose name is 'AutoId'
+     * @param AutoId
+     * @return the name
+     */
+    public String askName(Integer AutoId);
 }

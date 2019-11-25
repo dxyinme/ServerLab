@@ -12,6 +12,7 @@ import java.util.Map;
 
 
 @RestController
+@CrossOrigin // 允许外部访问
 public class UserController {
     OperatorUser opU = dataLinker.opUser;
     @GetMapping(value = "/UserInfo/{Name}")

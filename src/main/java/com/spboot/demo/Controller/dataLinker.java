@@ -10,10 +10,10 @@ import com.spboot.demo.User.OperatorUserImpl;
 import com.spboot.demo.Const.baiduAPI;
 
 public class dataLinker {
-    static protected OperatorUser opUser = new OperatorUserImpl();
-    static protected HouseService opHouse = new HouseServiceImp();
-    static protected OperatorComment opComment = new OperatorCommentImpl();
+    static public OperatorUser opUser = new OperatorUserImpl();
+    static public HouseService opHouse = new HouseServiceImp();
+    static public OperatorComment opComment = new OperatorCommentImpl();
 
-    static protected Urlcov urlcov = new Urlcov();
-    static protected baiduAPI baiduapi = new baiduAPI();
+    static public Urlcov urlcov = new Urlcov();
+    static public baiduAPI baiduapi = new baiduAPI();
 }
