@@ -47,22 +47,36 @@ public class HouseInfo {
      * 调用方式
      *
      *
-     * /HouseInfo/open/QueryMapCircle?address=地名
-     * 返回一个<img>
-     * sample:
-     * <img style="margin:20px" width="280" height="140" src="http://api.map.baidu.com/staticimage/v2?ak=E4805d16520de693a3fe707cdc962045&width=280&height=140&zoom=1"/>
+     * /HouseInfo/open/QueryMapCircle?address=地名&type=查的东西
+     * 返回一个json
+     *
      *
      */
 
     @RequestMapping(value="/HouseInfo/open/QueryMapCircle")
     public String QueryMapCircle(String address,String type , Integer Radius){
-        //System.out.println(Radius);
         if(Radius == null) {
             Radius = 1000;
         }
         String url = bua.getlLocationByAddress(address);
         Map<String , Double> loc = urlcatcher.getPosition(url);
-        return bua.getCircleSearch(type,loc.get("lng"),loc.get("lat"),Radius);
+        url = bua.getCircleSearch(type,loc.get("lng"),loc.get("lat"),Radius);
+        List<Map<String , String>> info = urlcatcher.getSomeThing(url , new String[]{
+                "address",
+                "name",
+                "location"
+        });
+        StringBuilder sb = new StringBuilder("");
+        //System.out.println(info);
+        for(Map<String,String> now : info){
+            sb.append("<br>");
+            sb.append(now.get("name"));
+            sb.append("<div></div>");
+            sb.append("address : " + now.get("address"));
+            sb.append("</br>");
+
+        }
+        return sb.toString();
     }
 
 
