@@ -31,29 +31,32 @@ public class HouseInfo {
      * /HouseInfo/open/QueryMapImg?address=地名
      * 返回一个<img>
      * sample:
-     * <img style="margin:20px" width="280" height="140" src="http://api.map.baidu.com/staticimage/v2?ak=E4805d16520de693a3fe707cdc962045&width=280&height=140&zoom=1"/>
+     *  further//<img style="margin:20px" width="280" height="140" src="http://api.map.baidu.com/staticimage/v2?ak=E4805d16520de693a3fe707cdc962045&width=280&height=140&zoom=1"/>
+     *  http://api.map.baidu.com/staticimage/v2?ak=E4805d16520de693a3fe707cdc962045&width=280&height=140&zoom=1
      *
      */
-    @RequestMapping(value="/HouseInfo/open/QueryMapImg")
+    @RequestMapping(value="/HouseInfo/open/QueryMapImg" , method =  RequestMethod.GET)
     public String QueryMapImg(String address){
+        System.out.println("address : " + address);
         String url = bua.getlLocationByAddress(address);
         System.out.println(url);
         Map<String,Double> loc = urlcatcher.getPosition(url);
         System.out.println(loc.get("lng") + " " + loc.get("lat"));
-        System.out.println(bua.getImgByLocation(loc.get("lng") , loc.get("lat")));
-        return bua.getImgByLocation(loc.get("lng") , loc.get("lat"));
+        String res = bua.getImgByLocation(loc.get("lng") , loc.get("lat"));
+        System.out.println(res);
+        return res;
     }
     /*
      * 调用方式
      *
      *
      * /HouseInfo/open/QueryMapCircle?address=地名&type=查的东西
-     * 返回一个json
+     * 返回一个String
      *
      *
      */
 
-    @RequestMapping(value="/HouseInfo/open/QueryMapCircle")
+    @RequestMapping(value="/HouseInfo/open/QueryMapCircle" , method = RequestMethod.GET)
     public String QueryMapCircle(String address,String type , Integer Radius){
         if(Radius == null) {
             Radius = 1000;
@@ -68,6 +71,7 @@ public class HouseInfo {
         });
         StringBuilder sb = new StringBuilder("");
         //System.out.println(info);
+        sb.append("<font color=\"green\">");
         for(Map<String,String> now : info){
             sb.append("<br>");
             sb.append(now.get("name"));
@@ -76,6 +80,7 @@ public class HouseInfo {
             sb.append("</br>");
 
         }
+        sb.append("</font>");
         return sb.toString();
     }
 
@@ -87,7 +92,6 @@ public class HouseInfo {
      * @return
      */
     @RequestMapping(value="/HouseInfo/open/searchFieldHouses")
-    //@CrossOrigin(allowCredentials = "true",allowedHeaders = "*")
     @ResponseBody
     public List<House> searchFieldHouses(String data){
         System.err.println(data);
@@ -128,4 +132,5 @@ public class HouseInfo {
         //System.out.println(ret.size());
         return ret;
     }
+
 }
