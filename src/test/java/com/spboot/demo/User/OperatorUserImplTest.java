@@ -1,9 +1,6 @@
 package com.spboot.demo.User;
 
-import com.spboot.demo.User.OperatorUser;
-import com.spboot.demo.User.OperatorUserImpl;
-import com.spboot.demo.User.User;
-import com.spboot.demo.User.UserImpl;
+
 import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After; 
@@ -12,7 +9,7 @@ import org.junit.After;
 * OperatorUserImpl Tester. 
 * 
 * @author <Authors name> 
-* @since <pre>10ÔÂ 28, 2019</pre> 
+* @since <pre>10.28, 2019</pre>
 * @version 1.0 
 */ 
 public class OperatorUserImplTest { 
