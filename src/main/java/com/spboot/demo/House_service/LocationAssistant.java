@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class LocationAssistant {
     static final private String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final private String DB_URL = "jdbc:mysql://localhost:3306/house_users";
+    static final private String DB_URL = "jdbc:mysql://"+const_oct.mysqlIP+":3306/house_users";
     static final private String adminName = const_oct.admin;
     static final private String passWord = const_oct.password;
 
