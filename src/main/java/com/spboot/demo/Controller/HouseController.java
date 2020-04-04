@@ -1,56 +1,45 @@
 package com.spboot.demo.Controller;
 
-import com.spboot.demo.Const.baiduAPI;
-import com.spboot.demo.House.House;
-import com.spboot.demo.House_service.HouseService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin // 允许外部访问
 public class HouseController {
-    HouseService opH = dataLinker.opHouse;
-    baiduAPI map_api = dataLinker.baiduapi;
-    @GetMapping(value = "/HouseInfo/AutoId/{AutoId}")
-    public House searchHouseByAutoId(@PathVariable("AutoId") Integer AutoId){
-        System.out.println(AutoId);
-        System.out.println("OK" + AutoId.toString());
-        return opH.searchHouseByAutoId(AutoId);
-    }
+
+
+
 
     @GetMapping(value = "/HouseInfo/location/{location}")
     public String searchHouseByLocation(@PathVariable("location") String location){
-        String url = map_api.getMapByAddress(location);
-
-        return url;
+        return null;
     }
 
     @GetMapping(value = "/HouseInfo/type/{type}")
     public String searchHouseByType(@PathVariable("type") Integer Type){
-        return opH.searchHouseByType(Type).toString();
+        return null;
     }
 
     @GetMapping(value = "/HouseInfo/Area/{minArea}-{maxArea}")
     public String searchHouseByArea(@PathVariable("minArea") Integer minArea,
                                       @PathVariable("maxArea") Integer maxArea){
-        return opH.searchHouseByArea(minArea,maxArea).toString();
+        return null;
     }
 
     @GetMapping(value = "/HouseInfo/Time/{minTime}-{maxTime}")
     public String searchHouseByBuildTime(@PathVariable("minTime") Integer minTime,
                                     @PathVariable("maxTime") Integer maxTime){
-        return opH.searchHouseByBuildTime(minTime,maxTime).toString();
+        return null;
     }
 
     @GetMapping(value = "/HouseInfo/Floor/{minFloor}-{maxFloor}")
     public String searchHouseByFloor(@PathVariable("minFloor") Integer minFloor,
                                      @PathVariable("maxFloor") Integer maxFloor){
-        return opH.searchHouseByFloor(minFloor, maxFloor).toString();
+        return null;
     }
     @GetMapping(value = "/HouseInfo/Price/{minPrice}-{maxPrice}")
     public String searchHouseByPrice(@PathVariable("minPrice") Integer minPrice,
                                      @PathVariable("maxPrice") Integer maxPrice){
-        System.out.println(minPrice + " " + maxPrice);
-        return opH.searchHouseByPrice(minPrice,maxPrice).toString();
+        return null;
     }
 
     //以上是查询信息部分。
@@ -64,47 +53,20 @@ public class HouseController {
                            @RequestParam("floor") String Sfloor,
                            @RequestParam("buildTime") String SbuildTime,
                            @RequestParam("timeLimit") String StimeLimit){
-        Integer house_id;
-        System.out.println("ffff");
-        try{
-            house_id = opH.addHouse(location,
-                    Integer.parseInt(Sarea),
-                    Integer.parseInt(Sprice),
-                    Integer.parseInt(Stype),
-                    Integer.parseInt(Sfloor),
-                    Integer.parseInt(SbuildTime),
-                    Integer.parseInt(StimeLimit));
-            return "add house" + house_id.toString() + "success";
-        }catch(Exception e){
-            e.printStackTrace();
-            return "fuck!";
-        }
+
+        return null;
     }
 
     @PostMapping(value = "/HouseOp/deleteHouse")
     @ResponseBody
     public String deleteHouse(@RequestParam("autoId")Integer autoId){
-        Integer house_id;
-        try {
-            house_id = opH.deleteHouse(autoId);
-            return "house" + house_id.toString() + "delete success";
-        }catch(Exception e){
-            e.printStackTrace();
-            return "fuck!";
-        }
+        return null;
     }
 
     @PostMapping(value="/HouseOp/restoreHouse")
     @ResponseBody
     public String restoreHouse(@RequestParam("autoId") Integer autoId){
-        Integer house_id;
-        try{
-            house_id = opH.restoreHouse(autoId);
-            return "house " + house_id.toString() + "has been restore";
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "fuck!";
-        }
+        return null;
     }
 
 }
