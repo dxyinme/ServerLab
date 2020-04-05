@@ -7,8 +7,9 @@ import java.util.List;
 import com.spboot.demo.model.UserExample;
 import com.spboot.demo.mapper.UserMapper;
 import com.spboot.demo.service.UserService;
+
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Resource
     private UserMapper userMapper;
@@ -49,13 +50,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public int updateByExampleSelective(User record,UserExample example) {
-        return userMapper.updateByExampleSelective(record,example);
+    public int updateByExampleSelective(User record, UserExample example) {
+        return userMapper.updateByExampleSelective(record, example);
     }
 
     @Override
-    public int updateByExample(User record,UserExample example) {
-        return userMapper.updateByExample(record,example);
+    public int updateByExample(User record, UserExample example) {
+        return userMapper.updateByExample(record, example);
     }
 
     @Override
@@ -69,3 +70,4 @@ public class UserServiceImpl implements UserService{
     }
 
 }
+

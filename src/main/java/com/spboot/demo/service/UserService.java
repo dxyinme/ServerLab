@@ -3,7 +3,8 @@ package com.spboot.demo.service;
 import com.spboot.demo.model.User;
 import java.util.List;
 import com.spboot.demo.model.UserExample;
-public interface UserService{
+
+public interface UserService {
 
 
     long countByExample(UserExample example);
@@ -20,12 +21,13 @@ public interface UserService{
 
     User selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(User record,UserExample example);
+    int updateByExampleSelective(User record, UserExample example);
 
-    int updateByExample(User record,UserExample example);
+    int updateByExample(User record, UserExample example);
 
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
 
 }
+

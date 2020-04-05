@@ -4,6 +4,8 @@ package com.spboot.demo.Controller;
 
 import com.spboot.demo.Const.CONSTLIST;
 import com.spboot.demo.HttpResponse.HttpResponse;
+import com.spboot.demo.model.User;
+import com.spboot.demo.model.UserExample;
 import com.spboot.demo.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
+import java.util.List;
 
 
 @Api(tags={"用户系统"})
@@ -31,8 +34,44 @@ public class UserController {
             @RequestParam(value = "username") String username,
             @RequestParam(value = "password") String password
     ){
-        System.err.println(username + " " + password);
-        return new HttpResponse(CONSTLIST.OK , "login success");
+        Long userId = (Long) request.getSession().getAttribute("id");
+        if(userId != null) {
+            return new HttpResponse(CONSTLIST.FAIL , "不许重复登录");
+        }
+        UserExample userExample = new UserExample();
+        userExample.or()
+                .andUserNameEqualTo(username);
+        List<User> userList = userService.selectByExample(userExample);
+        if(userList.size() == 0){
+            return new HttpResponse(CONSTLIST.FAIL , "no such user");
+        }
+        User nowUser = userList.get(0);
+        if(nowUser.getPassWord().equals(password)) {
+            request.getSession().setAttribute("id" , nowUser.getId());
+            return new HttpResponse(CONSTLIST.OK, "login success");
+        }
+        else{
+            return new HttpResponse(CONSTLIST.FAIL , "wrong password");
+        }
+    }
+
+
+    @ApiOperation(value = "注册" , response = HttpResponse.class)
+    @PostMapping("usersystem/SignUp")
+    public HttpResponse SignUp(
+            HttpServletRequest request,
+            @RequestParam(value = "username") String username,
+            @RequestParam(value = "password") String password
+    ){
+        UserExample userExample = new UserExample();
+        userExample.or().andUserNameEqualTo(username);
+        if(userService.countByExample(userExample) != 0) {
+            return new HttpResponse(CONSTLIST.FAIL , "用户名 已经存在");
+        }
+        else {
+            userService.insert(new User(username , password));
+            return new HttpResponse(CONSTLIST.OK , "注册成功");
+        }
     }
 
 }

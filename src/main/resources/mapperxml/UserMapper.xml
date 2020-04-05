@@ -6,8 +6,8 @@
     <!--@Table user_table-->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="message" jdbcType="VARCHAR" property="message" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="pass_word" jdbcType="VARCHAR" property="passWord" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -71,7 +71,7 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, message, username, `password`
+    id, message, user_name, pass_word
   </sql>
   <select id="selectByExample" parameterType="com.spboot.demo.model.UserExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -109,9 +109,9 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.spboot.demo.model.User" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into user_table (message, username, `password`
+    insert into user_table (message, user_name, pass_word
       )
-    values (#{message,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
+    values (#{message,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{passWord,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.spboot.demo.model.User" useGeneratedKeys="true">
@@ -121,22 +121,22 @@
       <if test="message != null">
         message,
       </if>
-      <if test="username != null">
-        username,
+      <if test="userName != null">
+        user_name,
       </if>
-      <if test="password != null">
-        `password`,
+      <if test="passWord != null">
+        pass_word,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="message != null">
         #{message,jdbcType=VARCHAR},
       </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
+      <if test="passWord != null">
+        #{passWord,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -157,11 +157,11 @@
       <if test="record.message != null">
         message = #{record.message,jdbcType=VARCHAR},
       </if>
-      <if test="record.username != null">
-        username = #{record.username,jdbcType=VARCHAR},
+      <if test="record.userName != null">
+        user_name = #{record.userName,jdbcType=VARCHAR},
       </if>
-      <if test="record.password != null">
-        `password` = #{record.password,jdbcType=VARCHAR},
+      <if test="record.passWord != null">
+        pass_word = #{record.passWord,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -173,8 +173,8 @@
     update user_table
     set id = #{record.id,jdbcType=INTEGER},
       message = #{record.message,jdbcType=VARCHAR},
-      username = #{record.username,jdbcType=VARCHAR},
-      `password` = #{record.password,jdbcType=VARCHAR}
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      pass_word = #{record.passWord,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -186,11 +186,11 @@
       <if test="message != null">
         message = #{message,jdbcType=VARCHAR},
       </if>
-      <if test="username != null">
-        username = #{username,jdbcType=VARCHAR},
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        `password` = #{password,jdbcType=VARCHAR},
+      <if test="passWord != null">
+        pass_word = #{passWord,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -199,8 +199,8 @@
     <!--@mbg.generated-->
     update user_table
     set message = #{message,jdbcType=VARCHAR},
-      username = #{username,jdbcType=VARCHAR},
-      `password` = #{password,jdbcType=VARCHAR}
+      user_name = #{userName,jdbcType=VARCHAR},
+      pass_word = #{passWord,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
