@@ -4,10 +4,13 @@ package com.spboot.demo.Controller;
 
 import com.spboot.demo.Const.CONSTLIST;
 import com.spboot.demo.HttpResponse.HttpResponse;
+import com.spboot.demo.LogicAPI.SnowflakeIdWorker;
 import com.spboot.demo.model.House;
+import com.spboot.demo.model.Order;
 import com.spboot.demo.model.User;
 import com.spboot.demo.model.UserExample;
 import com.spboot.demo.service.HouseService;
+import com.spboot.demo.service.OrderService;
 import com.spboot.demo.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -30,7 +33,8 @@ public class UserController {
     @Autowired
     HouseService houseService;
 
-
+    @Autowired
+    OrderService orderService;
 
     @ApiOperation(value = "登录" , response = HttpResponse.class)
     @PostMapping("usersystem/login")
@@ -94,4 +98,20 @@ public class UserController {
         return new HttpResponse(CONSTLIST.OK , "load success");
     }
 
+
+    @ApiOperation(value = "发起购买请求" , response = HttpResponse.class)
+    @PostMapping(value = "usersystem/orderHouse")
+    public HttpResponse orderHouse(
+        HttpServletRequest request,
+        @RequestParam(value = "houseId") Integer HouseId
+    ){
+        Integer userId = (Integer) request.getSession().getAttribute("id");
+        if(userId == null){
+            return new HttpResponse(CONSTLIST.FAIL , "login first");
+        }
+        Long NewId = SnowflakeIdWorker.nextId();
+        Order order = new Order(NewId.toString(),userId,HouseId,CONSTLIST.WAITING);
+        orderService.insert(order);
+        return new HttpResponse(CONSTLIST.OK , "");
+    }
 }
