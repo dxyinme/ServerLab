@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.sql.Date;
 import java.util.List;
 
 
@@ -110,7 +111,8 @@ public class UserController {
             return new HttpResponse(CONSTLIST.FAIL , "login first");
         }
         Long NewId = SnowflakeIdWorker.nextId();
-        Order order = new Order(NewId.toString(),userId,HouseId,CONSTLIST.WAITING);
+        Order order = new Order(NewId.toString(),userId,HouseId,
+                new Date(System.currentTimeMillis()),CONSTLIST.WAITING);
         orderService.insert(order);
         return new HttpResponse(CONSTLIST.OK , "order success");
     }

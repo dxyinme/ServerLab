@@ -31,10 +31,11 @@ public class Order {
     */
     private String status;
 
-    public Order(String orderId, Integer userId, Integer houseId, String status) {
+    public Order(String orderId, Integer userId, Integer houseId, Date date, String status) {
         this.orderId = orderId;
         this.userId = userId;
         this.houseId = houseId;
+        this.orderTime = date;
         this.status = status;
     }
 
