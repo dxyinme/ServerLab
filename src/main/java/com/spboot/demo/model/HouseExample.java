@@ -3,14 +3,14 @@ package com.spboot.demo.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HouseTableExample {
+public class HouseExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public HouseTableExample() {
+    public HouseExample() {
         oredCriteria = new ArrayList<>();
     }
 
@@ -424,52 +424,62 @@ public class HouseTableExample {
             return (Criteria) this;
         }
 
-        public Criteria andBuildTimeEqualTo(Integer value) {
+        public Criteria andBuildTimeEqualTo(String value) {
             addCriterion("build_time =", value, "buildTime");
             return (Criteria) this;
         }
 
-        public Criteria andBuildTimeNotEqualTo(Integer value) {
+        public Criteria andBuildTimeNotEqualTo(String value) {
             addCriterion("build_time <>", value, "buildTime");
             return (Criteria) this;
         }
 
-        public Criteria andBuildTimeGreaterThan(Integer value) {
+        public Criteria andBuildTimeGreaterThan(String value) {
             addCriterion("build_time >", value, "buildTime");
             return (Criteria) this;
         }
 
-        public Criteria andBuildTimeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andBuildTimeGreaterThanOrEqualTo(String value) {
             addCriterion("build_time >=", value, "buildTime");
             return (Criteria) this;
         }
 
-        public Criteria andBuildTimeLessThan(Integer value) {
+        public Criteria andBuildTimeLessThan(String value) {
             addCriterion("build_time <", value, "buildTime");
             return (Criteria) this;
         }
 
-        public Criteria andBuildTimeLessThanOrEqualTo(Integer value) {
+        public Criteria andBuildTimeLessThanOrEqualTo(String value) {
             addCriterion("build_time <=", value, "buildTime");
             return (Criteria) this;
         }
 
-        public Criteria andBuildTimeIn(List<Integer> values) {
+        public Criteria andBuildTimeLike(String value) {
+            addCriterion("build_time like", value, "buildTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuildTimeNotLike(String value) {
+            addCriterion("build_time not like", value, "buildTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuildTimeIn(List<String> values) {
             addCriterion("build_time in", values, "buildTime");
             return (Criteria) this;
         }
 
-        public Criteria andBuildTimeNotIn(List<Integer> values) {
+        public Criteria andBuildTimeNotIn(List<String> values) {
             addCriterion("build_time not in", values, "buildTime");
             return (Criteria) this;
         }
 
-        public Criteria andBuildTimeBetween(Integer value1, Integer value2) {
+        public Criteria andBuildTimeBetween(String value1, String value2) {
             addCriterion("build_time between", value1, value2, "buildTime");
             return (Criteria) this;
         }
 
-        public Criteria andBuildTimeNotBetween(Integer value1, Integer value2) {
+        public Criteria andBuildTimeNotBetween(String value1, String value2) {
             addCriterion("build_time not between", value1, value2, "buildTime");
             return (Criteria) this;
         }
@@ -531,66 +541,6 @@ public class HouseTableExample {
 
         public Criteria andTimeLimitNotBetween(Integer value1, Integer value2) {
             addCriterion("time_limit not between", value1, value2, "timeLimit");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIsNull() {
-            addCriterion("user_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIsNotNull() {
-            addCriterion("user_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdEqualTo(Integer value) {
-            addCriterion("user_id =", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotEqualTo(Integer value) {
-            addCriterion("user_id <>", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdGreaterThan(Integer value) {
-            addCriterion("user_id >", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("user_id >=", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdLessThan(Integer value) {
-            addCriterion("user_id <", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdLessThanOrEqualTo(Integer value) {
-            addCriterion("user_id <=", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIn(List<Integer> values) {
-            addCriterion("user_id in", values, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotIn(List<Integer> values) {
-            addCriterion("user_id not in", values, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdBetween(Integer value1, Integer value2) {
-            addCriterion("user_id between", value1, value2, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("user_id not between", value1, value2, "userId");
             return (Criteria) this;
         }
 
@@ -711,6 +661,66 @@ public class HouseTableExample {
 
         public Criteria andHouseTypeNotBetween(Integer value1, Integer value2) {
             addCriterion("house_type not between", value1, value2, "houseType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOwneridIsNull() {
+            addCriterion("ownerid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOwneridIsNotNull() {
+            addCriterion("ownerid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOwneridEqualTo(Integer value) {
+            addCriterion("ownerid =", value, "ownerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOwneridNotEqualTo(Integer value) {
+            addCriterion("ownerid <>", value, "ownerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOwneridGreaterThan(Integer value) {
+            addCriterion("ownerid >", value, "ownerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOwneridGreaterThanOrEqualTo(Integer value) {
+            addCriterion("ownerid >=", value, "ownerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOwneridLessThan(Integer value) {
+            addCriterion("ownerid <", value, "ownerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOwneridLessThanOrEqualTo(Integer value) {
+            addCriterion("ownerid <=", value, "ownerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOwneridIn(List<Integer> values) {
+            addCriterion("ownerid in", values, "ownerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOwneridNotIn(List<Integer> values) {
+            addCriterion("ownerid not in", values, "ownerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOwneridBetween(Integer value1, Integer value2) {
+            addCriterion("ownerid between", value1, value2, "ownerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOwneridNotBetween(Integer value1, Integer value2) {
+            addCriterion("ownerid not between", value1, value2, "ownerid");
             return (Criteria) this;
         }
     }

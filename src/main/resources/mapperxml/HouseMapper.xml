@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.spboot.demo.mapper.HouseTableMapper">
-  <resultMap id="BaseResultMap" type="com.spboot.demo.model.HouseTable">
+<mapper namespace="com.spboot.demo.mapper.HouseMapper">
+  <resultMap id="BaseResultMap" type="com.spboot.demo.model.House">
     <!--@mbg.generated-->
     <!--@Table house_table-->
     <id column="house_id" jdbcType="INTEGER" property="houseId" />
@@ -9,11 +9,11 @@
     <result column="house_area" jdbcType="INTEGER" property="houseArea" />
     <result column="house_price" jdbcType="INTEGER" property="housePrice" />
     <result column="house_floor" jdbcType="INTEGER" property="houseFloor" />
-    <result column="build_time" jdbcType="INTEGER" property="buildTime" />
+    <result column="build_time" jdbcType="VARCHAR" property="buildTime" />
     <result column="time_limit" jdbcType="INTEGER" property="timeLimit" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="house_state" jdbcType="INTEGER" property="houseState" />
     <result column="house_type" jdbcType="INTEGER" property="houseType" />
+    <result column="ownerid" jdbcType="INTEGER" property="ownerid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -78,9 +78,9 @@
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     house_id, house_location, house_area, house_price, house_floor, build_time, time_limit, 
-    user_id, house_state, house_type
+    house_state, house_type, ownerid
   </sql>
-  <select id="selectByExample" parameterType="com.spboot.demo.model.HouseTableExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.spboot.demo.model.HouseExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
@@ -107,25 +107,25 @@
     delete from house_table
     where house_id = #{houseId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.spboot.demo.model.HouseTableExample">
+  <delete id="deleteByExample" parameterType="com.spboot.demo.model.HouseExample">
     <!--@mbg.generated-->
     delete from house_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="house_id" keyProperty="houseId" parameterType="com.spboot.demo.model.HouseTable" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="house_id" keyProperty="houseId" parameterType="com.spboot.demo.model.House" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into house_table (house_location, house_area, house_price, 
       house_floor, build_time, time_limit, 
-      user_id, house_state, house_type
+      house_state, house_type, ownerid
       )
     values (#{houseLocation,jdbcType=LONGVARCHAR}, #{houseArea,jdbcType=INTEGER}, #{housePrice,jdbcType=INTEGER}, 
-      #{houseFloor,jdbcType=INTEGER}, #{buildTime,jdbcType=INTEGER}, #{timeLimit,jdbcType=INTEGER}, 
-      #{userId,jdbcType=INTEGER}, #{houseState,jdbcType=INTEGER}, #{houseType,jdbcType=INTEGER}
+      #{houseFloor,jdbcType=INTEGER}, #{buildTime,jdbcType=VARCHAR}, #{timeLimit,jdbcType=INTEGER}, 
+      #{houseState,jdbcType=INTEGER}, #{houseType,jdbcType=INTEGER}, #{ownerid,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="house_id" keyProperty="houseId" parameterType="com.spboot.demo.model.HouseTable" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="house_id" keyProperty="houseId" parameterType="com.spboot.demo.model.House" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into house_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -147,14 +147,14 @@
       <if test="timeLimit != null">
         time_limit,
       </if>
-      <if test="userId != null">
-        user_id,
-      </if>
       <if test="houseState != null">
         house_state,
       </if>
       <if test="houseType != null">
         house_type,
+      </if>
+      <if test="ownerid != null">
+        ownerid,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -171,13 +171,10 @@
         #{houseFloor,jdbcType=INTEGER},
       </if>
       <if test="buildTime != null">
-        #{buildTime,jdbcType=INTEGER},
+        #{buildTime,jdbcType=VARCHAR},
       </if>
       <if test="timeLimit != null">
         #{timeLimit,jdbcType=INTEGER},
-      </if>
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
       </if>
       <if test="houseState != null">
         #{houseState,jdbcType=INTEGER},
@@ -185,9 +182,12 @@
       <if test="houseType != null">
         #{houseType,jdbcType=INTEGER},
       </if>
+      <if test="ownerid != null">
+        #{ownerid,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.spboot.demo.model.HouseTableExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.spboot.demo.model.HouseExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
     select count(*) from house_table
     <if test="_parameter != null">
@@ -214,19 +214,19 @@
         house_floor = #{record.houseFloor,jdbcType=INTEGER},
       </if>
       <if test="record.buildTime != null">
-        build_time = #{record.buildTime,jdbcType=INTEGER},
+        build_time = #{record.buildTime,jdbcType=VARCHAR},
       </if>
       <if test="record.timeLimit != null">
         time_limit = #{record.timeLimit,jdbcType=INTEGER},
-      </if>
-      <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
       <if test="record.houseState != null">
         house_state = #{record.houseState,jdbcType=INTEGER},
       </if>
       <if test="record.houseType != null">
         house_type = #{record.houseType,jdbcType=INTEGER},
+      </if>
+      <if test="record.ownerid != null">
+        ownerid = #{record.ownerid,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -241,16 +241,16 @@
       house_area = #{record.houseArea,jdbcType=INTEGER},
       house_price = #{record.housePrice,jdbcType=INTEGER},
       house_floor = #{record.houseFloor,jdbcType=INTEGER},
-      build_time = #{record.buildTime,jdbcType=INTEGER},
+      build_time = #{record.buildTime,jdbcType=VARCHAR},
       time_limit = #{record.timeLimit,jdbcType=INTEGER},
-      user_id = #{record.userId,jdbcType=INTEGER},
       house_state = #{record.houseState,jdbcType=INTEGER},
-      house_type = #{record.houseType,jdbcType=INTEGER}
+      house_type = #{record.houseType,jdbcType=INTEGER},
+      ownerid = #{record.ownerid,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.spboot.demo.model.HouseTable">
+  <update id="updateByPrimaryKeySelective" parameterType="com.spboot.demo.model.House">
     <!--@mbg.generated-->
     update house_table
     <set>
@@ -267,13 +267,10 @@
         house_floor = #{houseFloor,jdbcType=INTEGER},
       </if>
       <if test="buildTime != null">
-        build_time = #{buildTime,jdbcType=INTEGER},
+        build_time = #{buildTime,jdbcType=VARCHAR},
       </if>
       <if test="timeLimit != null">
         time_limit = #{timeLimit,jdbcType=INTEGER},
-      </if>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="houseState != null">
         house_state = #{houseState,jdbcType=INTEGER},
@@ -281,21 +278,24 @@
       <if test="houseType != null">
         house_type = #{houseType,jdbcType=INTEGER},
       </if>
+      <if test="ownerid != null">
+        ownerid = #{ownerid,jdbcType=INTEGER},
+      </if>
     </set>
     where house_id = #{houseId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.spboot.demo.model.HouseTable">
+  <update id="updateByPrimaryKey" parameterType="com.spboot.demo.model.House">
     <!--@mbg.generated-->
     update house_table
     set house_location = #{houseLocation,jdbcType=LONGVARCHAR},
       house_area = #{houseArea,jdbcType=INTEGER},
       house_price = #{housePrice,jdbcType=INTEGER},
       house_floor = #{houseFloor,jdbcType=INTEGER},
-      build_time = #{buildTime,jdbcType=INTEGER},
+      build_time = #{buildTime,jdbcType=VARCHAR},
       time_limit = #{timeLimit,jdbcType=INTEGER},
-      user_id = #{userId,jdbcType=INTEGER},
       house_state = #{houseState,jdbcType=INTEGER},
-      house_type = #{houseType,jdbcType=INTEGER}
+      house_type = #{houseType,jdbcType=INTEGER},
+      ownerid = #{ownerid,jdbcType=INTEGER}
     where house_id = #{houseId,jdbcType=INTEGER}
   </update>
 </mapper>

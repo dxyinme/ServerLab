@@ -4,8 +4,10 @@ package com.spboot.demo.Controller;
 
 import com.spboot.demo.Const.CONSTLIST;
 import com.spboot.demo.HttpResponse.HttpResponse;
+import com.spboot.demo.model.House;
 import com.spboot.demo.model.User;
 import com.spboot.demo.model.UserExample;
+import com.spboot.demo.service.HouseService;
 import com.spboot.demo.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.websocket.server.PathParam;
+
 import java.util.List;
 
 
@@ -25,6 +27,9 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    HouseService houseService;
+
 
 
     @ApiOperation(value = "登录" , response = HttpResponse.class)
@@ -34,7 +39,7 @@ public class UserController {
             @RequestParam(value = "username") String username,
             @RequestParam(value = "password") String password
     ){
-        Long userId = (Long) request.getSession().getAttribute("id");
+        Integer userId = (Integer) request.getSession().getAttribute("id");
         if(userId != null) {
             return new HttpResponse(CONSTLIST.FAIL , "不许重复登录");
         }
@@ -72,6 +77,20 @@ public class UserController {
             userService.insert(new User(username , password));
             return new HttpResponse(CONSTLIST.OK , "注册成功");
         }
+    }
+
+
+    @ApiOperation(value = "录入房源" , response = HttpResponse.class)
+    @PostMapping( value = "usersystem/loadHouse" )
+    public HttpResponse loadHouse(
+            HttpServletRequest request,
+            House house){
+        Integer userId = (Integer) request.getSession().getAttribute("id");
+        if(userId == null){
+            return new HttpResponse(CONSTLIST.FAIL , "login first");
+        }
+
+        return new HttpResponse(CONSTLIST.OK , "load success");
     }
 
 }

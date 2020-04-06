@@ -1,6 +1,10 @@
 package com.spboot.demo.model;
 
-public class HouseTable {
+import io.swagger.annotations.ApiModelProperty;
+
+public class House {
+
+    @ApiModelProperty(hidden = true , example = "0")
     private Integer houseId;
 
     private String houseLocation;
@@ -11,15 +15,20 @@ public class HouseTable {
 
     private Integer houseFloor;
 
-    private Integer buildTime;
+    private String buildTime;
 
     private Integer timeLimit;
 
-    private Integer userId;
-
+    @ApiModelProperty(hidden = true , example = "0")
     private Integer houseState;
 
     private Integer houseType;
+
+    /**
+    * 拥有者的用户id
+    */
+    @ApiModelProperty(hidden = true , example = "0")
+    private Integer ownerid;
 
     public Integer getHouseId() {
         return houseId;
@@ -61,11 +70,11 @@ public class HouseTable {
         this.houseFloor = houseFloor;
     }
 
-    public Integer getBuildTime() {
+    public String getBuildTime() {
         return buildTime;
     }
 
-    public void setBuildTime(Integer buildTime) {
+    public void setBuildTime(String buildTime) {
         this.buildTime = buildTime;
     }
 
@@ -75,14 +84,6 @@ public class HouseTable {
 
     public void setTimeLimit(Integer timeLimit) {
         this.timeLimit = timeLimit;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     public Integer getHouseState() {
@@ -99,5 +100,13 @@ public class HouseTable {
 
     public void setHouseType(Integer houseType) {
         this.houseType = houseType;
+    }
+
+    public Integer getOwnerid() {
+        return ownerid;
+    }
+
+    public void setOwnerid(Integer ownerid) {
+        this.ownerid = ownerid;
     }
 }
