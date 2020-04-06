@@ -112,6 +112,6 @@ public class UserController {
         Long NewId = SnowflakeIdWorker.nextId();
         Order order = new Order(NewId.toString(),userId,HouseId,CONSTLIST.WAITING);
         orderService.insert(order);
-        return new HttpResponse(CONSTLIST.OK , "");
+        return new HttpResponse(CONSTLIST.OK , "order success");
     }
 }
