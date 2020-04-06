@@ -89,7 +89,8 @@ public class UserController {
         if(userId == null){
             return new HttpResponse(CONSTLIST.FAIL , "login first");
         }
-
+        house.setOwnerid(userId);
+        houseService.insert(house);
         return new HttpResponse(CONSTLIST.OK , "load success");
     }
 
