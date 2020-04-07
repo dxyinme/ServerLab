@@ -5,16 +5,15 @@ package com.spboot.demo.Controller;
 import com.spboot.demo.Const.CONSTLIST;
 import com.spboot.demo.HttpResponse.HttpResponse;
 import com.spboot.demo.LogicAPI.SnowflakeIdWorker;
-import com.spboot.demo.model.House;
-import com.spboot.demo.model.Order;
-import com.spboot.demo.model.User;
-import com.spboot.demo.model.UserExample;
+import com.spboot.demo.model.*;
+import com.spboot.demo.service.CommentService;
 import com.spboot.demo.service.HouseService;
 import com.spboot.demo.service.OrderService;
 import com.spboot.demo.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +35,9 @@ public class UserController {
 
     @Autowired
     OrderService orderService;
+
+    @Autowired
+    CommentService commentService;
 
     @ApiOperation(value = "登录" , response = HttpResponse.class)
     @PostMapping("usersystem/login")
@@ -95,6 +97,7 @@ public class UserController {
             return new HttpResponse(CONSTLIST.FAIL , "login first");
         }
         house.setOwnerid(userId);
+        house.setHouseState(0);
         houseService.insert(house);
         return new HttpResponse(CONSTLIST.OK , "load success");
     }
@@ -116,4 +119,22 @@ public class UserController {
         orderService.insert(order);
         return new HttpResponse(CONSTLIST.OK , "order success");
     }
+
+
+    @ApiOperation(value = "用户对房子发送请求" , response = HttpResponse.class)
+    @PostMapping(value = "usersystem/addComment")
+    public HttpResponse addComment(
+            HttpServletRequest request,
+            @RequestParam(value = "houseId") Integer houseId,
+            @RequestParam(value = "comment") String commentContext
+    ){
+        Integer userId = (Integer) request.getSession().getAttribute("id");
+        if(userId == null){
+            return new HttpResponse(CONSTLIST.FAIL , "login first");
+        }
+        Comment comment = new Comment( commentContext , userId , houseId, true);
+        commentService.insert(comment);
+        return new HttpResponse(CONSTLIST.OK , "add success");
+    }
+
 }
