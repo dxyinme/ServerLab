@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.spboot.demo.mapper.OrderMapper">
-  <resultMap id="BaseResultMap" type="com.spboot.demo.model.Order">
+<mapper namespace="com.dxyinme.demo.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.dxyinme.demo.model.Order">
     <!--@mbg.generated-->
     <!--@Table order_table-->
     <id column="order_id" jdbcType="VARCHAR" property="orderId" />
@@ -74,7 +74,7 @@
     <!--@mbg.generated-->
     order_id, user_id, house_id, order_time, `status`
   </sql>
-  <select id="selectByExample" parameterType="com.spboot.demo.model.OrderExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.dxyinme.demo.model.OrderExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
@@ -101,21 +101,21 @@
     delete from order_table
     where order_id = #{orderId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.spboot.demo.model.OrderExample">
+  <delete id="deleteByExample" parameterType="com.dxyinme.demo.model.OrderExample">
     <!--@mbg.generated-->
     delete from order_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.spboot.demo.model.Order">
+  <insert id="insert" parameterType="com.dxyinme.demo.model.Order">
     <!--@mbg.generated-->
     insert into order_table (order_id, user_id, house_id, 
       order_time, `status`)
     values (#{orderId,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, 
       #{orderTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.spboot.demo.model.Order">
+  <insert id="insertSelective" parameterType="com.dxyinme.demo.model.Order">
     <!--@mbg.generated-->
     insert into order_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -153,7 +153,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.spboot.demo.model.OrderExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.dxyinme.demo.model.OrderExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
     select count(*) from order_table
     <if test="_parameter != null">
@@ -196,7 +196,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.spboot.demo.model.Order">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dxyinme.demo.model.Order">
     <!--@mbg.generated-->
     update order_table
     <set>
@@ -215,7 +215,7 @@
     </set>
     where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.spboot.demo.model.Order">
+  <update id="updateByPrimaryKey" parameterType="com.dxyinme.demo.model.Order">
     <!--@mbg.generated-->
     update order_table
     set user_id = #{userId,jdbcType=INTEGER},

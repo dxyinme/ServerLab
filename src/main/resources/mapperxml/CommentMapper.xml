@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.spboot.demo.mapper.CommentMapper">
-  <resultMap id="BaseResultMap" type="com.spboot.demo.model.Comment">
+<mapper namespace="com.dxyinme.demo.mapper.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.dxyinme.demo.model.Comment">
     <!--@mbg.generated-->
     <!--@Table comment_table-->
     <id column="comment_id" jdbcType="INTEGER" property="commentId" />
@@ -75,7 +75,7 @@
     <!--@mbg.generated-->
     comment_id, `comment`, user_id, house_id, timetable, isshow
   </sql>
-  <select id="selectByExample" parameterType="com.spboot.demo.model.CommentExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.dxyinme.demo.model.CommentExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
@@ -102,21 +102,21 @@
     delete from comment_table
     where comment_id = #{commentId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.spboot.demo.model.CommentExample">
+  <delete id="deleteByExample" parameterType="com.dxyinme.demo.model.CommentExample">
     <!--@mbg.generated-->
     delete from comment_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="comment_id" keyProperty="commentId" parameterType="com.spboot.demo.model.Comment" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="comment_id" keyProperty="commentId" parameterType="com.dxyinme.demo.model.Comment" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into comment_table (`comment`, user_id, house_id, 
       timetable, isshow)
     values (#{comment,jdbcType=LONGVARCHAR}, #{userId,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, 
       #{timetable,jdbcType=TIMESTAMP}, #{isshow,jdbcType=BOOLEAN})
   </insert>
-  <insert id="insertSelective" keyColumn="comment_id" keyProperty="commentId" parameterType="com.spboot.demo.model.Comment" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="comment_id" keyProperty="commentId" parameterType="com.dxyinme.demo.model.Comment" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into comment_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -154,7 +154,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.spboot.demo.model.CommentExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.dxyinme.demo.model.CommentExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
     select count(*) from comment_table
     <if test="_parameter != null">
@@ -201,7 +201,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.spboot.demo.model.Comment">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dxyinme.demo.model.Comment">
     <!--@mbg.generated-->
     update comment_table
     <set>
@@ -223,7 +223,7 @@
     </set>
     where comment_id = #{commentId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.spboot.demo.model.Comment">
+  <update id="updateByPrimaryKey" parameterType="com.dxyinme.demo.model.Comment">
     <!--@mbg.generated-->
     update comment_table
     set `comment` = #{comment,jdbcType=LONGVARCHAR},

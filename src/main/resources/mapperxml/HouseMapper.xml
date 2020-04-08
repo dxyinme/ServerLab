@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.spboot.demo.mapper.HouseMapper">
-  <resultMap id="BaseResultMap" type="com.spboot.demo.model.House">
+<mapper namespace="com.dxyinme.demo.mapper.HouseMapper">
+  <resultMap id="BaseResultMap" type="com.dxyinme.demo.model.House">
     <!--@mbg.generated-->
     <!--@Table house_table-->
     <id column="house_id" jdbcType="INTEGER" property="houseId" />
@@ -80,7 +80,7 @@
     house_id, house_location, house_area, house_price, house_floor, build_time, time_limit, 
     house_state, house_type, ownerid
   </sql>
-  <select id="selectByExample" parameterType="com.spboot.demo.model.HouseExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.dxyinme.demo.model.HouseExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
@@ -107,14 +107,14 @@
     delete from house_table
     where house_id = #{houseId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.spboot.demo.model.HouseExample">
+  <delete id="deleteByExample" parameterType="com.dxyinme.demo.model.HouseExample">
     <!--@mbg.generated-->
     delete from house_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="house_id" keyProperty="houseId" parameterType="com.spboot.demo.model.House" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="house_id" keyProperty="houseId" parameterType="com.dxyinme.demo.model.House" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into house_table (house_location, house_area, house_price, 
       house_floor, build_time, time_limit, 
@@ -125,7 +125,7 @@
       #{houseState,jdbcType=INTEGER}, #{houseType,jdbcType=INTEGER}, #{ownerid,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="house_id" keyProperty="houseId" parameterType="com.spboot.demo.model.House" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="house_id" keyProperty="houseId" parameterType="com.dxyinme.demo.model.House" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into house_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -187,7 +187,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.spboot.demo.model.HouseExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.dxyinme.demo.model.HouseExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
     select count(*) from house_table
     <if test="_parameter != null">
@@ -250,7 +250,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.spboot.demo.model.House">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dxyinme.demo.model.House">
     <!--@mbg.generated-->
     update house_table
     <set>
@@ -284,7 +284,7 @@
     </set>
     where house_id = #{houseId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.spboot.demo.model.House">
+  <update id="updateByPrimaryKey" parameterType="com.dxyinme.demo.model.House">
     <!--@mbg.generated-->
     update house_table
     set house_location = #{houseLocation,jdbcType=LONGVARCHAR},
