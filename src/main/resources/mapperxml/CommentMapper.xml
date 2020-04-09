@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxyinme.demo.mapper.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.dxyinme.demo.model.Comment">
+    <!--@mbg.generated-->
+    <!--@Table comment_table-->
+    <id column="comment_id" jdbcType="INTEGER" property="commentId" />
+    <result column="comment" jdbcType="LONGVARCHAR" property="comment" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="timetable" jdbcType="TIMESTAMP" property="timetable" />
+    <result column="isshow" jdbcType="BOOLEAN" property="isshow" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    comment_id, `comment`, user_id, house_id, timetable, isshow
+  </sql>
+  <select id="selectByExample" parameterType="com.dxyinme.demo.model.CommentExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from comment_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from comment_table
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from comment_table
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dxyinme.demo.model.CommentExample">
+    <!--@mbg.generated-->
+    delete from comment_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="comment_id" keyProperty="commentId" parameterType="com.dxyinme.demo.model.Comment" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into comment_table (`comment`, user_id, house_id, 
+      timetable, isshow)
+    values (#{comment,jdbcType=LONGVARCHAR}, #{userId,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, 
+      #{timetable,jdbcType=TIMESTAMP}, #{isshow,jdbcType=BOOLEAN})
+  </insert>
+  <insert id="insertSelective" keyColumn="comment_id" keyProperty="commentId" parameterType="com.dxyinme.demo.model.Comment" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into comment_table
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="comment != null">
+        `comment`,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="timetable != null">
+        timetable,
+      </if>
+      <if test="isshow != null">
+        isshow,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="comment != null">
+        #{comment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="timetable != null">
+        #{timetable,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isshow != null">
+        #{isshow,jdbcType=BOOLEAN},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dxyinme.demo.model.CommentExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from comment_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update comment_table
+    <set>
+      <if test="record.commentId != null">
+        comment_id = #{record.commentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.comment != null">
+        `comment` = #{record.comment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.houseId != null">
+        house_id = #{record.houseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.timetable != null">
+        timetable = #{record.timetable,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isshow != null">
+        isshow = #{record.isshow,jdbcType=BOOLEAN},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update comment_table
+    set comment_id = #{record.commentId,jdbcType=INTEGER},
+      `comment` = #{record.comment,jdbcType=LONGVARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      house_id = #{record.houseId,jdbcType=INTEGER},
+      timetable = #{record.timetable,jdbcType=TIMESTAMP},
+      isshow = #{record.isshow,jdbcType=BOOLEAN}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dxyinme.demo.model.Comment">
+    <!--@mbg.generated-->
+    update comment_table
+    <set>
+      <if test="comment != null">
+        `comment` = #{comment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="timetable != null">
+        timetable = #{timetable,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isshow != null">
+        isshow = #{isshow,jdbcType=BOOLEAN},
+      </if>
+    </set>
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dxyinme.demo.model.Comment">
+    <!--@mbg.generated-->
+    update comment_table
+    set `comment` = #{comment,jdbcType=LONGVARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      house_id = #{houseId,jdbcType=INTEGER},
+      timetable = #{timetable,jdbcType=TIMESTAMP},
+      isshow = #{isshow,jdbcType=BOOLEAN}
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </update>
+</mapper>

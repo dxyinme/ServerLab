@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dxyinme.demo.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.dxyinme.demo.model.User">
+<mapper namespace="com.dxyinme.demo.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.dxyinme.demo.model.Order">
     <!--@mbg.generated-->
-    <!--@Table user_table-->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="message" jdbcType="VARCHAR" property="message" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="pass_word" jdbcType="VARCHAR" property="passWord" />
+    <!--@Table order_table-->
+    <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -71,16 +72,16 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, message, user_name, pass_word
+    order_id, user_id, house_id, order_time, `status`
   </sql>
-  <select id="selectByExample" parameterType="com.dxyinme.demo.model.UserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.dxyinme.demo.model.OrderExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from user_table
+    from order_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -88,80 +89,95 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
-    from user_table
-    where id = #{id,jdbcType=INTEGER}
+    from order_table
+    where order_id = #{orderId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     <!--@mbg.generated-->
-    delete from user_table
-    where id = #{id,jdbcType=INTEGER}
+    delete from order_table
+    where order_id = #{orderId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.dxyinme.demo.model.UserExample">
+  <delete id="deleteByExample" parameterType="com.dxyinme.demo.model.OrderExample">
     <!--@mbg.generated-->
-    delete from user_table
+    delete from order_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.dxyinme.demo.model.User" useGeneratedKeys="true">
+  <insert id="insert" parameterType="com.dxyinme.demo.model.Order">
     <!--@mbg.generated-->
-    insert into user_table (message, user_name, pass_word
-      )
-    values (#{message,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{passWord,jdbcType=VARCHAR}
-      )
+    insert into order_table (order_id, user_id, house_id, 
+      order_time, `status`)
+    values (#{orderId,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, 
+      #{orderTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.dxyinme.demo.model.User" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.dxyinme.demo.model.Order">
     <!--@mbg.generated-->
-    insert into user_table
+    insert into order_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="message != null">
-        message,
+      <if test="orderId != null">
+        order_id,
       </if>
-      <if test="userName != null">
-        user_name,
+      <if test="userId != null">
+        user_id,
       </if>
-      <if test="passWord != null">
-        pass_word,
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="orderTime != null">
+        order_time,
+      </if>
+      <if test="status != null">
+        `status`,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="message != null">
-        #{message,jdbcType=VARCHAR},
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
       </if>
-      <if test="userName != null">
-        #{userName,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
       </if>
-      <if test="passWord != null">
-        #{passWord,jdbcType=VARCHAR},
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null">
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.dxyinme.demo.model.UserExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.dxyinme.demo.model.OrderExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
-    select count(*) from user_table
+    select count(*) from order_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
     <!--@mbg.generated-->
-    update user_table
+    update order_table
     <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=VARCHAR},
       </if>
-      <if test="record.message != null">
-        message = #{record.message,jdbcType=VARCHAR},
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
-      <if test="record.userName != null">
-        user_name = #{record.userName,jdbcType=VARCHAR},
+      <if test="record.houseId != null">
+        house_id = #{record.houseId,jdbcType=INTEGER},
       </if>
-      <if test="record.passWord != null">
-        pass_word = #{record.passWord,jdbcType=VARCHAR},
+      <if test="record.orderTime != null">
+        order_time = #{record.orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null">
+        `status` = #{record.status,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -170,37 +186,42 @@
   </update>
   <update id="updateByExample" parameterType="map">
     <!--@mbg.generated-->
-    update user_table
-    set id = #{record.id,jdbcType=INTEGER},
-      message = #{record.message,jdbcType=VARCHAR},
-      user_name = #{record.userName,jdbcType=VARCHAR},
-      pass_word = #{record.passWord,jdbcType=VARCHAR}
+    update order_table
+    set order_id = #{record.orderId,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      house_id = #{record.houseId,jdbcType=INTEGER},
+      order_time = #{record.orderTime,jdbcType=TIMESTAMP},
+      `status` = #{record.status,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.dxyinme.demo.model.User">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dxyinme.demo.model.Order">
     <!--@mbg.generated-->
-    update user_table
+    update order_table
     <set>
-      <if test="message != null">
-        message = #{message,jdbcType=VARCHAR},
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="userName != null">
-        user_name = #{userName,jdbcType=VARCHAR},
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER},
       </if>
-      <if test="passWord != null">
-        pass_word = #{passWord,jdbcType=VARCHAR},
+      <if test="orderTime != null">
+        order_time = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.dxyinme.demo.model.User">
+  <update id="updateByPrimaryKey" parameterType="com.dxyinme.demo.model.Order">
     <!--@mbg.generated-->
-    update user_table
-    set message = #{message,jdbcType=VARCHAR},
-      user_name = #{userName,jdbcType=VARCHAR},
-      pass_word = #{passWord,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    update order_table
+    set user_id = #{userId,jdbcType=INTEGER},
+      house_id = #{houseId,jdbcType=INTEGER},
+      order_time = #{orderTime,jdbcType=TIMESTAMP},
+      `status` = #{status,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
 </mapper>
