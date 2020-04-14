@@ -120,7 +120,7 @@ public class UserController {
     }
 
 
-    @ApiOperation(value = "用户对房子发送请求" , response = HttpResponse.class)
+    @ApiOperation(value = "用户对房子发送评论" , response = HttpResponse.class)
     @PostMapping(value = "usersystem/addComment")
     public HttpResponse addComment(
             HttpServletRequest request,
