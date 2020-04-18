@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.dxyinme.demo.model.Comment">
     <!--@mbg.generated-->
     <!--@Table comment_table-->
-    <id column="comment_id" jdbcType="INTEGER" property="commentId" />
+    <id column="comment_id" jdbcType="BIGINT" property="commentId" />
     <result column="comment" jdbcType="LONGVARCHAR" property="comment" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="house_id" jdbcType="INTEGER" property="houseId" />
@@ -90,17 +90,17 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
     from comment_table
-    where comment_id = #{commentId,jdbcType=INTEGER}
+    where comment_id = #{commentId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--@mbg.generated-->
     delete from comment_table
-    where comment_id = #{commentId,jdbcType=INTEGER}
+    where comment_id = #{commentId,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.dxyinme.demo.model.CommentExample">
     <!--@mbg.generated-->
@@ -166,7 +166,7 @@
     update comment_table
     <set>
       <if test="record.commentId != null">
-        comment_id = #{record.commentId,jdbcType=INTEGER},
+        comment_id = #{record.commentId,jdbcType=BIGINT},
       </if>
       <if test="record.comment != null">
         `comment` = #{record.comment,jdbcType=LONGVARCHAR},
@@ -191,7 +191,7 @@
   <update id="updateByExample" parameterType="map">
     <!--@mbg.generated-->
     update comment_table
-    set comment_id = #{record.commentId,jdbcType=INTEGER},
+    set comment_id = #{record.commentId,jdbcType=BIGINT},
       `comment` = #{record.comment,jdbcType=LONGVARCHAR},
       user_id = #{record.userId,jdbcType=INTEGER},
       house_id = #{record.houseId,jdbcType=INTEGER},
@@ -221,7 +221,7 @@
         isshow = #{isshow,jdbcType=BOOLEAN},
       </if>
     </set>
-    where comment_id = #{commentId,jdbcType=INTEGER}
+    where comment_id = #{commentId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.dxyinme.demo.model.Comment">
     <!--@mbg.generated-->
@@ -231,6 +231,6 @@
       house_id = #{houseId,jdbcType=INTEGER},
       timetable = #{timetable,jdbcType=TIMESTAMP},
       isshow = #{isshow,jdbcType=BOOLEAN}
-    where comment_id = #{commentId,jdbcType=INTEGER}
+    where comment_id = #{commentId,jdbcType=BIGINT}
   </update>
 </mapper>

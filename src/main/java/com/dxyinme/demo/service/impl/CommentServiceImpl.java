@@ -2,14 +2,13 @@ package com.dxyinme.demo.service.impl;
 
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
-import java.util.List;
 import com.dxyinme.demo.model.CommentExample;
+import java.util.List;
 import com.dxyinme.demo.mapper.CommentMapper;
 import com.dxyinme.demo.model.Comment;
 import com.dxyinme.demo.service.CommentService;
-
 @Service
-public class CommentServiceImpl implements CommentService {
+public class CommentServiceImpl implements CommentService{
 
     @Resource
     private CommentMapper commentMapper;
@@ -25,7 +24,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public int deleteByPrimaryKey(Integer commentId) {
+    public int deleteByPrimaryKey(Long commentId) {
         return commentMapper.deleteByPrimaryKey(commentId);
     }
 
@@ -45,18 +44,18 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Comment selectByPrimaryKey(Integer commentId) {
+    public Comment selectByPrimaryKey(Long commentId) {
         return commentMapper.selectByPrimaryKey(commentId);
     }
 
     @Override
-    public int updateByExampleSelective(Comment record, CommentExample example) {
-        return commentMapper.updateByExampleSelective(record, example);
+    public int updateByExampleSelective(Comment record,CommentExample example) {
+        return commentMapper.updateByExampleSelective(record,example);
     }
 
     @Override
-    public int updateByExample(Comment record, CommentExample example) {
-        return commentMapper.updateByExample(record, example);
+    public int updateByExample(Comment record,CommentExample example) {
+        return commentMapper.updateByExample(record,example);
     }
 
     @Override
@@ -70,4 +69,3 @@ public class CommentServiceImpl implements CommentService {
     }
 
 }
-

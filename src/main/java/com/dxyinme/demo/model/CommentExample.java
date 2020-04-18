@@ -115,52 +115,52 @@ public class CommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andCommentIdEqualTo(Integer value) {
+        public Criteria andCommentIdEqualTo(Long value) {
             addCriterion("comment_id =", value, "commentId");
             return (Criteria) this;
         }
 
-        public Criteria andCommentIdNotEqualTo(Integer value) {
+        public Criteria andCommentIdNotEqualTo(Long value) {
             addCriterion("comment_id <>", value, "commentId");
             return (Criteria) this;
         }
 
-        public Criteria andCommentIdGreaterThan(Integer value) {
+        public Criteria andCommentIdGreaterThan(Long value) {
             addCriterion("comment_id >", value, "commentId");
             return (Criteria) this;
         }
 
-        public Criteria andCommentIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andCommentIdGreaterThanOrEqualTo(Long value) {
             addCriterion("comment_id >=", value, "commentId");
             return (Criteria) this;
         }
 
-        public Criteria andCommentIdLessThan(Integer value) {
+        public Criteria andCommentIdLessThan(Long value) {
             addCriterion("comment_id <", value, "commentId");
             return (Criteria) this;
         }
 
-        public Criteria andCommentIdLessThanOrEqualTo(Integer value) {
+        public Criteria andCommentIdLessThanOrEqualTo(Long value) {
             addCriterion("comment_id <=", value, "commentId");
             return (Criteria) this;
         }
 
-        public Criteria andCommentIdIn(List<Integer> values) {
+        public Criteria andCommentIdIn(List<Long> values) {
             addCriterion("comment_id in", values, "commentId");
             return (Criteria) this;
         }
 
-        public Criteria andCommentIdNotIn(List<Integer> values) {
+        public Criteria andCommentIdNotIn(List<Long> values) {
             addCriterion("comment_id not in", values, "commentId");
             return (Criteria) this;
         }
 
-        public Criteria andCommentIdBetween(Integer value1, Integer value2) {
+        public Criteria andCommentIdBetween(Long value1, Long value2) {
             addCriterion("comment_id between", value1, value2, "commentId");
             return (Criteria) this;
         }
 
-        public Criteria andCommentIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andCommentIdNotBetween(Long value1, Long value2) {
             addCriterion("comment_id not between", value1, value2, "commentId");
             return (Criteria) this;
         }

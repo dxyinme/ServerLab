@@ -3,7 +3,7 @@ package com.dxyinme.demo.model;
 import java.util.Date;
 
 public class Comment {
-    private Integer commentId;
+    private Long commentId;
 
     private String comment;
 
@@ -12,13 +12,13 @@ public class Comment {
     private Integer houseId;
 
     /**
-     * 评论发布时间
-     */
+    * 评论发布时间
+    */
     private Date timetable;
 
     /**
-     * 是否显示
-     */
+    * 是否显示
+    */
     private Boolean isshow;
 
     public Comment(String comment, Integer userId, Integer houseId, Boolean isshow) {
@@ -28,11 +28,11 @@ public class Comment {
         this.isshow = isshow;
     }
 
-    public Integer getCommentId() {
+    public Long getCommentId() {
         return commentId;
     }
 
-    public void setCommentId(Integer commentId) {
+    public void setCommentId(Long commentId) {
         this.commentId = commentId;
     }
 

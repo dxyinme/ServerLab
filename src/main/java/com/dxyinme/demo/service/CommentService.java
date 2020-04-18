@@ -1,17 +1,16 @@
 package com.dxyinme.demo.service;
 
-import java.util.List;
 import com.dxyinme.demo.model.CommentExample;
+import java.util.List;
 import com.dxyinme.demo.model.Comment;
-
-public interface CommentService {
+public interface CommentService{
 
 
     long countByExample(CommentExample example);
 
     int deleteByExample(CommentExample example);
 
-    int deleteByPrimaryKey(Integer commentId);
+    int deleteByPrimaryKey(Long commentId);
 
     int insert(Comment record);
 
@@ -19,15 +18,14 @@ public interface CommentService {
 
     List<Comment> selectByExample(CommentExample example);
 
-    Comment selectByPrimaryKey(Integer commentId);
+    Comment selectByPrimaryKey(Long commentId);
 
-    int updateByExampleSelective(Comment record, CommentExample example);
+    int updateByExampleSelective(Comment record,CommentExample example);
 
-    int updateByExample(Comment record, CommentExample example);
+    int updateByExample(Comment record,CommentExample example);
 
     int updateByPrimaryKeySelective(Comment record);
 
     int updateByPrimaryKey(Comment record);
 
 }
-

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 
@@ -131,7 +131,9 @@ public class UserController {
         if(userId == null){
             return new HttpResponse(CONSTLIST.FAIL , "login first");
         }
-        Comment comment = new Comment( commentContext , userId , houseId, true);
+
+        Comment comment = new Comment( commentContext , userId , houseId
+                , true);
         commentService.insert(comment);
         return new HttpResponse(CONSTLIST.OK , "add success");
     }
