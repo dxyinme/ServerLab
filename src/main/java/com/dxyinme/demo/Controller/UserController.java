@@ -10,11 +10,16 @@ import com.dxyinme.demo.service.CommentService;
 import com.dxyinme.demo.service.HouseService;
 import com.dxyinme.demo.service.OrderService;
 import com.dxyinme.demo.service.UserService;
+import com.google.gson.Gson;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+import javax.jms.Destination;
 import javax.servlet.http.HttpServletRequest;
 
 import java.util.Date;
@@ -35,8 +40,16 @@ public class UserController {
     @Autowired
     OrderService orderService;
 
+
     @Autowired
-    CommentService commentService;
+    private JmsTemplate jmsTemplate;
+
+    @Resource(name="commentInsert")
+    private Destination commentInsert;
+
+    @Resource(name="commentInsert2")
+    private Destination commentInsert2;
+
 
     @ApiOperation(value = "登录" , response = HttpResponse.class)
     @PostMapping("usersystem/login")
@@ -131,10 +144,12 @@ public class UserController {
         if(userId == null){
             return new HttpResponse(CONSTLIST.FAIL , "login first");
         }
-
+        Gson gson = new Gson();
         Comment comment = new Comment( commentContext , userId , houseId
                 , true);
-        commentService.insert(comment);
+        String v = gson.toJson(comment);
+        jmsTemplate.convertAndSend(commentInsert,v);
+        jmsTemplate.convertAndSend(commentInsert2,v);
         return new HttpResponse(CONSTLIST.OK , "add success");
     }
 

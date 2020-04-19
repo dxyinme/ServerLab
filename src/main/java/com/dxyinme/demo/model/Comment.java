@@ -75,4 +75,5 @@ public class Comment {
     public void setIsshow(Boolean isshow) {
         this.isshow = isshow;
     }
+
 }

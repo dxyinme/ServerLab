@@ -6,3 +6,4 @@
 
 localhost:8099/swagger-ui.html
 
+需要使用activeMQ
