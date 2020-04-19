@@ -7,9 +7,9 @@
     <id column="comment_id" jdbcType="BIGINT" property="commentId" />
     <result column="comment" jdbcType="LONGVARCHAR" property="comment" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="house_id" jdbcType="INTEGER" property="houseId" />
-    <result column="timetable" jdbcType="TIMESTAMP" property="timetable" />
+    <result column="house_id" jdbcType="VARCHAR" property="houseId" />
     <result column="isshow" jdbcType="BOOLEAN" property="isshow" />
+    <result column="timetable" jdbcType="VARCHAR" property="timetable" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -73,7 +73,7 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    comment_id, `comment`, user_id, house_id, timetable, isshow
+    comment_id, `comment`, user_id, house_id, isshow, timetable
   </sql>
   <select id="selectByExample" parameterType="com.dxyinme.demo.model.CommentExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -112,9 +112,9 @@
   <insert id="insert" keyColumn="comment_id" keyProperty="commentId" parameterType="com.dxyinme.demo.model.Comment" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into comment_table (`comment`, user_id, house_id, 
-      timetable, isshow)
-    values (#{comment,jdbcType=LONGVARCHAR}, #{userId,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, 
-      #{timetable,jdbcType=TIMESTAMP}, #{isshow,jdbcType=BOOLEAN})
+      isshow, timetable)
+    values (#{comment,jdbcType=LONGVARCHAR}, #{userId,jdbcType=INTEGER}, #{houseId,jdbcType=VARCHAR}, 
+      #{isshow,jdbcType=BOOLEAN}, #{timetable,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="comment_id" keyProperty="commentId" parameterType="com.dxyinme.demo.model.Comment" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -129,11 +129,11 @@
       <if test="houseId != null">
         house_id,
       </if>
-      <if test="timetable != null">
-        timetable,
-      </if>
       <if test="isshow != null">
         isshow,
+      </if>
+      <if test="timetable != null">
+        timetable,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -144,13 +144,13 @@
         #{userId,jdbcType=INTEGER},
       </if>
       <if test="houseId != null">
-        #{houseId,jdbcType=INTEGER},
-      </if>
-      <if test="timetable != null">
-        #{timetable,jdbcType=TIMESTAMP},
+        #{houseId,jdbcType=VARCHAR},
       </if>
       <if test="isshow != null">
         #{isshow,jdbcType=BOOLEAN},
+      </if>
+      <if test="timetable != null">
+        #{timetable,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -175,13 +175,13 @@
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
       <if test="record.houseId != null">
-        house_id = #{record.houseId,jdbcType=INTEGER},
-      </if>
-      <if test="record.timetable != null">
-        timetable = #{record.timetable,jdbcType=TIMESTAMP},
+        house_id = #{record.houseId,jdbcType=VARCHAR},
       </if>
       <if test="record.isshow != null">
         isshow = #{record.isshow,jdbcType=BOOLEAN},
+      </if>
+      <if test="record.timetable != null">
+        timetable = #{record.timetable,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -194,9 +194,9 @@
     set comment_id = #{record.commentId,jdbcType=BIGINT},
       `comment` = #{record.comment,jdbcType=LONGVARCHAR},
       user_id = #{record.userId,jdbcType=INTEGER},
-      house_id = #{record.houseId,jdbcType=INTEGER},
-      timetable = #{record.timetable,jdbcType=TIMESTAMP},
-      isshow = #{record.isshow,jdbcType=BOOLEAN}
+      house_id = #{record.houseId,jdbcType=VARCHAR},
+      isshow = #{record.isshow,jdbcType=BOOLEAN},
+      timetable = #{record.timetable,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -212,13 +212,13 @@
         user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="houseId != null">
-        house_id = #{houseId,jdbcType=INTEGER},
-      </if>
-      <if test="timetable != null">
-        timetable = #{timetable,jdbcType=TIMESTAMP},
+        house_id = #{houseId,jdbcType=VARCHAR},
       </if>
       <if test="isshow != null">
         isshow = #{isshow,jdbcType=BOOLEAN},
+      </if>
+      <if test="timetable != null">
+        timetable = #{timetable,jdbcType=VARCHAR},
       </if>
     </set>
     where comment_id = #{commentId,jdbcType=BIGINT}
@@ -228,9 +228,9 @@
     update comment_table
     set `comment` = #{comment,jdbcType=LONGVARCHAR},
       user_id = #{userId,jdbcType=INTEGER},
-      house_id = #{houseId,jdbcType=INTEGER},
-      timetable = #{timetable,jdbcType=TIMESTAMP},
-      isshow = #{isshow,jdbcType=BOOLEAN}
+      house_id = #{houseId,jdbcType=VARCHAR},
+      isshow = #{isshow,jdbcType=BOOLEAN},
+      timetable = #{timetable,jdbcType=VARCHAR}
     where comment_id = #{commentId,jdbcType=BIGINT}
   </update>
 </mapper>

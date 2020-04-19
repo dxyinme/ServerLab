@@ -1,31 +1,40 @@
 package com.dxyinme.demo.model;
 
-import java.util.Date;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+@ApiModel(value="com-dxyinme-demo-model-Comment")
 public class Comment {
+    @ApiModelProperty(value="")
     private Long commentId;
 
+    @ApiModelProperty(value="")
     private String comment;
 
+    @ApiModelProperty(value="")
     private Integer userId;
 
-    private Integer houseId;
-
-    /**
-    * 评论发布时间
-    */
-    private Date timetable;
+    @ApiModelProperty(value="")
+    private String houseId;
 
     /**
     * 是否显示
     */
+    @ApiModelProperty(value="是否显示")
     private Boolean isshow;
 
-    public Comment(String comment, Integer userId, Integer houseId, Boolean isshow) {
+    /**
+    * 评论时间
+    */
+    @ApiModelProperty(value="评论时间")
+    private String timetable;
+
+    public Comment(String comment, Integer userId, String houseId, Boolean isshow, String timetable) {
         this.comment = comment;
         this.userId = userId;
         this.houseId = houseId;
         this.isshow = isshow;
+        this.timetable = timetable;
     }
 
     public Long getCommentId() {
@@ -52,20 +61,12 @@ public class Comment {
         this.userId = userId;
     }
 
-    public Integer getHouseId() {
+    public String getHouseId() {
         return houseId;
     }
 
-    public void setHouseId(Integer houseId) {
+    public void setHouseId(String houseId) {
         this.houseId = houseId;
-    }
-
-    public Date getTimetable() {
-        return timetable;
-    }
-
-    public void setTimetable(Date timetable) {
-        this.timetable = timetable;
     }
 
     public Boolean getIsshow() {
@@ -76,4 +77,11 @@ public class Comment {
         this.isshow = isshow;
     }
 
+    public String getTimetable() {
+        return timetable;
+    }
+
+    public void setTimetable(String timetable) {
+        this.timetable = timetable;
+    }
 }

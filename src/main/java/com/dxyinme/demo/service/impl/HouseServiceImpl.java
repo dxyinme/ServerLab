@@ -7,8 +7,9 @@ import com.dxyinme.demo.model.HouseExample;
 import com.dxyinme.demo.model.House;
 import com.dxyinme.demo.mapper.HouseMapper;
 import com.dxyinme.demo.service.HouseService;
+
 @Service
-public class HouseServiceImpl implements HouseService{
+public class HouseServiceImpl implements HouseService {
 
     @Resource
     private HouseMapper houseMapper;
@@ -24,7 +25,7 @@ public class HouseServiceImpl implements HouseService{
     }
 
     @Override
-    public int deleteByPrimaryKey(Integer houseId) {
+    public int deleteByPrimaryKey(String houseId) {
         return houseMapper.deleteByPrimaryKey(houseId);
     }
 
@@ -34,28 +35,23 @@ public class HouseServiceImpl implements HouseService{
     }
 
     @Override
-    public int insertSelective(House record) {
-        return houseMapper.insertSelective(record);
-    }
-
-    @Override
     public List<House> selectByExample(HouseExample example) {
         return houseMapper.selectByExample(example);
     }
 
     @Override
-    public House selectByPrimaryKey(Integer houseId) {
+    public House selectByPrimaryKey(String houseId) {
         return houseMapper.selectByPrimaryKey(houseId);
     }
 
     @Override
-    public int updateByExampleSelective(House record,HouseExample example) {
-        return houseMapper.updateByExampleSelective(record,example);
+    public int updateByExampleSelective(House record, HouseExample example) {
+        return houseMapper.updateByExampleSelective(record, example);
     }
 
     @Override
-    public int updateByExample(House record,HouseExample example) {
-        return houseMapper.updateByExample(record,example);
+    public int updateByExample(House record, HouseExample example) {
+        return houseMapper.updateByExample(record, example);
     }
 
     @Override
@@ -69,3 +65,4 @@ public class HouseServiceImpl implements HouseService{
     }
 
 }
+

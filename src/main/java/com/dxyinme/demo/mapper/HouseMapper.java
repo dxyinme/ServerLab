@@ -12,15 +12,13 @@ public interface HouseMapper {
 
     int deleteByExample(HouseExample example);
 
-    int deleteByPrimaryKey(Integer houseId);
+    int deleteByPrimaryKey(String houseId);
 
     int insert(House record);
 
-    int insertSelective(House record);
-
     List<House> selectByExample(HouseExample example);
 
-    House selectByPrimaryKey(Integer houseId);
+    House selectByPrimaryKey(String houseId);
 
     int updateByExampleSelective(@Param("record") House record, @Param("example") HouseExample example);
 

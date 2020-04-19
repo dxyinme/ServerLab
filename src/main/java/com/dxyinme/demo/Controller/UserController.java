@@ -5,6 +5,7 @@ package com.dxyinme.demo.Controller;
 import com.dxyinme.demo.Const.CONSTLIST;
 import com.dxyinme.demo.HttpResponse.HttpResponse;
 import com.dxyinme.demo.LogicAPI.SnowflakeIdWorker;
+import com.dxyinme.demo.LogicAPI.generator;
 import com.dxyinme.demo.model.*;
 import com.dxyinme.demo.service.CommentService;
 import com.dxyinme.demo.service.HouseService;
@@ -110,6 +111,7 @@ public class UserController {
         }
         house.setOwnerid(userId);
         house.setHouseState(0);
+        house.setHouseId(generator.getNewHouseId(userId));
         houseService.insert(house);
         return new HttpResponse(CONSTLIST.OK , "load success");
     }
@@ -119,7 +121,7 @@ public class UserController {
     @PostMapping(value = "usersystem/orderHouse")
     public HttpResponse orderHouse(
         HttpServletRequest request,
-        @RequestParam(value = "houseId") Integer HouseId
+        @RequestParam(value = "houseId") String HouseId
     ){
         Integer userId = (Integer) request.getSession().getAttribute("id");
         if(userId == null){
@@ -137,7 +139,7 @@ public class UserController {
     @PostMapping(value = "usersystem/addComment")
     public HttpResponse addComment(
             HttpServletRequest request,
-            @RequestParam(value = "houseId") Integer houseId,
+            @RequestParam(value = "houseId") String houseId,
             @RequestParam(value = "comment") String commentContext
     ){
         Integer userId = (Integer) request.getSession().getAttribute("id");
@@ -145,8 +147,9 @@ public class UserController {
             return new HttpResponse(CONSTLIST.FAIL , "login first");
         }
         Gson gson = new Gson();
+        Date now = new Date(System.currentTimeMillis());
         Comment comment = new Comment( commentContext , userId , houseId
-                , true);
+                , true , now.toString());
         String v = gson.toJson(comment);
         jmsTemplate.convertAndSend(commentInsert,v);
         jmsTemplate.convertAndSend(commentInsert2,v);

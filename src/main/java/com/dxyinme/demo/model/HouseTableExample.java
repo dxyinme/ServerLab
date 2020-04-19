@@ -3,14 +3,14 @@ package com.dxyinme.demo.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HouseExample {
+public class HouseTableExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public HouseExample() {
+    public HouseTableExample() {
         oredCriteria = new ArrayList<>();
     }
 

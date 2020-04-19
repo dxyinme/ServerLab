@@ -1,41 +1,49 @@
 package com.dxyinme.demo.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 
 /**
     * 订单table
     */
+@ApiModel(value="com-dxyinme-demo-model-Order")
 public class Order {
     /**
     * 订单id
     */
+    @ApiModelProperty(value="订单id")
     private String orderId;
 
     /**
     * 买家id
     */
+    @ApiModelProperty(value="买家id")
     private Integer userId;
 
     /**
     * 房子id
     */
-    private Integer houseId;
+    @ApiModelProperty(value="房子id")
+    private String houseId;
 
     /**
     * 订单发起时间
     */
+    @ApiModelProperty(value="订单发起时间")
     private Date orderTime;
 
     /**
     * 订单状态
     */
+    @ApiModelProperty(value="订单状态")
     private String status;
 
-    public Order(String orderId, Integer userId, Integer houseId, Date date, String status) {
+    public Order(String orderId, Integer userId, String houseId, Date orderTime, String status) {
         this.orderId = orderId;
         this.userId = userId;
         this.houseId = houseId;
-        this.orderTime = date;
+        this.orderTime = orderTime;
         this.status = status;
     }
 
@@ -55,11 +63,11 @@ public class Order {
         this.userId = userId;
     }
 
-    public Integer getHouseId() {
+    public String getHouseId() {
         return houseId;
     }
 
-    public void setHouseId(Integer houseId) {
+    public void setHouseId(String houseId) {
         this.houseId = houseId;
     }
 

@@ -93,28 +93,13 @@ public class HouseController {
     //以上是查询信息部分。
 
 
-    @ApiOperation(value = "添加一间房子" , response = HttpResponse.class)
-    @GetMapping(value = "/housesystem/addHouse")
-    public HttpResponse addHouse(
-            HttpServletRequest request,
-            House house
-    ){
-        Integer userId = (Integer) request.getSession().getAttribute("id");
-        if(userId == null) {
-            return new HttpResponse(CONSTLIST.FAIL , "login first");
-        }
-        house.setOwnerid(userId);
-        house.setHouseState(0); // 审核通过才是1
-        houseService.insert(house);
-        return new HttpResponse(CONSTLIST.OK , "add success" , house);
-    }
 
 
     @ApiOperation(value = "按照id下架/上架房子 , 0 是下架， 1 是上架", response = HttpResponse.class)
     @PostMapping(value = "/housesystem/opTypeHouse")
     public HttpResponse operatorHouse(
             HttpServletRequest request,
-            @RequestParam("houseId") Integer houseId,
+            @RequestParam("houseId") String houseId,
             @RequestParam("opType") Integer opType
             ){
         Integer userId = (Integer) request.getSession().getAttribute("id");

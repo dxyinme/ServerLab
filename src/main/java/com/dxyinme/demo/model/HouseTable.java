@@ -3,8 +3,8 @@ package com.dxyinme.demo.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "com-dxyinme-demo-model-House")
-public class House {
+@ApiModel(value = "com-dxyinme-demo-model-HouseTable")
+public class HouseTable {
     /**
      * houseid
      */

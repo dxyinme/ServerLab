@@ -1,7 +1,6 @@
 package com.dxyinme.demo.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class CommentExample {
@@ -305,113 +304,63 @@ public class CommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andHouseIdEqualTo(Integer value) {
+        public Criteria andHouseIdEqualTo(String value) {
             addCriterion("house_id =", value, "houseId");
             return (Criteria) this;
         }
 
-        public Criteria andHouseIdNotEqualTo(Integer value) {
+        public Criteria andHouseIdNotEqualTo(String value) {
             addCriterion("house_id <>", value, "houseId");
             return (Criteria) this;
         }
 
-        public Criteria andHouseIdGreaterThan(Integer value) {
+        public Criteria andHouseIdGreaterThan(String value) {
             addCriterion("house_id >", value, "houseId");
             return (Criteria) this;
         }
 
-        public Criteria andHouseIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andHouseIdGreaterThanOrEqualTo(String value) {
             addCriterion("house_id >=", value, "houseId");
             return (Criteria) this;
         }
 
-        public Criteria andHouseIdLessThan(Integer value) {
+        public Criteria andHouseIdLessThan(String value) {
             addCriterion("house_id <", value, "houseId");
             return (Criteria) this;
         }
 
-        public Criteria andHouseIdLessThanOrEqualTo(Integer value) {
+        public Criteria andHouseIdLessThanOrEqualTo(String value) {
             addCriterion("house_id <=", value, "houseId");
             return (Criteria) this;
         }
 
-        public Criteria andHouseIdIn(List<Integer> values) {
+        public Criteria andHouseIdLike(String value) {
+            addCriterion("house_id like", value, "houseId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseIdNotLike(String value) {
+            addCriterion("house_id not like", value, "houseId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseIdIn(List<String> values) {
             addCriterion("house_id in", values, "houseId");
             return (Criteria) this;
         }
 
-        public Criteria andHouseIdNotIn(List<Integer> values) {
+        public Criteria andHouseIdNotIn(List<String> values) {
             addCriterion("house_id not in", values, "houseId");
             return (Criteria) this;
         }
 
-        public Criteria andHouseIdBetween(Integer value1, Integer value2) {
+        public Criteria andHouseIdBetween(String value1, String value2) {
             addCriterion("house_id between", value1, value2, "houseId");
             return (Criteria) this;
         }
 
-        public Criteria andHouseIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andHouseIdNotBetween(String value1, String value2) {
             addCriterion("house_id not between", value1, value2, "houseId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimetableIsNull() {
-            addCriterion("timetable is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimetableIsNotNull() {
-            addCriterion("timetable is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimetableEqualTo(Date value) {
-            addCriterion("timetable =", value, "timetable");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimetableNotEqualTo(Date value) {
-            addCriterion("timetable <>", value, "timetable");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimetableGreaterThan(Date value) {
-            addCriterion("timetable >", value, "timetable");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimetableGreaterThanOrEqualTo(Date value) {
-            addCriterion("timetable >=", value, "timetable");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimetableLessThan(Date value) {
-            addCriterion("timetable <", value, "timetable");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimetableLessThanOrEqualTo(Date value) {
-            addCriterion("timetable <=", value, "timetable");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimetableIn(List<Date> values) {
-            addCriterion("timetable in", values, "timetable");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimetableNotIn(List<Date> values) {
-            addCriterion("timetable not in", values, "timetable");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimetableBetween(Date value1, Date value2) {
-            addCriterion("timetable between", value1, value2, "timetable");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimetableNotBetween(Date value1, Date value2) {
-            addCriterion("timetable not between", value1, value2, "timetable");
             return (Criteria) this;
         }
 
@@ -472,6 +421,76 @@ public class CommentExample {
 
         public Criteria andIsshowNotBetween(Boolean value1, Boolean value2) {
             addCriterion("isshow not between", value1, value2, "isshow");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimetableIsNull() {
+            addCriterion("timetable is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimetableIsNotNull() {
+            addCriterion("timetable is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimetableEqualTo(String value) {
+            addCriterion("timetable =", value, "timetable");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimetableNotEqualTo(String value) {
+            addCriterion("timetable <>", value, "timetable");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimetableGreaterThan(String value) {
+            addCriterion("timetable >", value, "timetable");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimetableGreaterThanOrEqualTo(String value) {
+            addCriterion("timetable >=", value, "timetable");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimetableLessThan(String value) {
+            addCriterion("timetable <", value, "timetable");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimetableLessThanOrEqualTo(String value) {
+            addCriterion("timetable <=", value, "timetable");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimetableLike(String value) {
+            addCriterion("timetable like", value, "timetable");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimetableNotLike(String value) {
+            addCriterion("timetable not like", value, "timetable");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimetableIn(List<String> values) {
+            addCriterion("timetable in", values, "timetable");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimetableNotIn(List<String> values) {
+            addCriterion("timetable not in", values, "timetable");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimetableBetween(String value1, String value2) {
+            addCriterion("timetable between", value1, value2, "timetable");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimetableNotBetween(String value1, String value2) {
+            addCriterion("timetable not between", value1, value2, "timetable");
             return (Criteria) this;
         }
     }

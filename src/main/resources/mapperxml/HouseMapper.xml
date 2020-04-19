@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.dxyinme.demo.model.House">
     <!--@mbg.generated-->
     <!--@Table house_table-->
-    <id column="house_id" jdbcType="INTEGER" property="houseId" />
+    <id column="house_id" jdbcType="VARCHAR" property="houseId" />
     <result column="house_location" jdbcType="LONGVARCHAR" property="houseLocation" />
     <result column="house_area" jdbcType="INTEGER" property="houseArea" />
     <result column="house_price" jdbcType="INTEGER" property="housePrice" />
@@ -95,17 +95,17 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
     from house_table
-    where house_id = #{houseId,jdbcType=INTEGER}
+    where house_id = #{houseId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     <!--@mbg.generated-->
     delete from house_table
-    where house_id = #{houseId,jdbcType=INTEGER}
+    where house_id = #{houseId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.dxyinme.demo.model.HouseExample">
     <!--@mbg.generated-->
@@ -114,79 +114,19 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="house_id" keyProperty="houseId" parameterType="com.dxyinme.demo.model.House" useGeneratedKeys="true">
+  <insert id="insert" parameterType="com.dxyinme.demo.model.House">
     <!--@mbg.generated-->
-    insert into house_table (house_location, house_area, house_price, 
-      house_floor, build_time, time_limit, 
-      house_state, house_type, ownerid
+    insert into house_table (house_location, house_area, house_price,
+      house_floor, build_time, time_limit,
+      house_state, house_type, ownerid , house_id
       )
-    values (#{houseLocation,jdbcType=LONGVARCHAR}, #{houseArea,jdbcType=INTEGER}, #{housePrice,jdbcType=INTEGER}, 
-      #{houseFloor,jdbcType=INTEGER}, #{buildTime,jdbcType=VARCHAR}, #{timeLimit,jdbcType=INTEGER}, 
-      #{houseState,jdbcType=INTEGER}, #{houseType,jdbcType=INTEGER}, #{ownerid,jdbcType=INTEGER}
+    values (#{houseLocation,jdbcType=LONGVARCHAR}, #{houseArea,jdbcType=INTEGER}, #{housePrice,jdbcType=INTEGER},
+      #{houseFloor,jdbcType=INTEGER}, #{buildTime,jdbcType=VARCHAR}, #{timeLimit,jdbcType=INTEGER},
+      #{houseState,jdbcType=INTEGER}, #{houseType,jdbcType=INTEGER}, #{ownerid,jdbcType=INTEGER} ,
+      #{houseId,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="house_id" keyProperty="houseId" parameterType="com.dxyinme.demo.model.House" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into house_table
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="houseLocation != null">
-        house_location,
-      </if>
-      <if test="houseArea != null">
-        house_area,
-      </if>
-      <if test="housePrice != null">
-        house_price,
-      </if>
-      <if test="houseFloor != null">
-        house_floor,
-      </if>
-      <if test="buildTime != null">
-        build_time,
-      </if>
-      <if test="timeLimit != null">
-        time_limit,
-      </if>
-      <if test="houseState != null">
-        house_state,
-      </if>
-      <if test="houseType != null">
-        house_type,
-      </if>
-      <if test="ownerid != null">
-        ownerid,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="houseLocation != null">
-        #{houseLocation,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="houseArea != null">
-        #{houseArea,jdbcType=INTEGER},
-      </if>
-      <if test="housePrice != null">
-        #{housePrice,jdbcType=INTEGER},
-      </if>
-      <if test="houseFloor != null">
-        #{houseFloor,jdbcType=INTEGER},
-      </if>
-      <if test="buildTime != null">
-        #{buildTime,jdbcType=VARCHAR},
-      </if>
-      <if test="timeLimit != null">
-        #{timeLimit,jdbcType=INTEGER},
-      </if>
-      <if test="houseState != null">
-        #{houseState,jdbcType=INTEGER},
-      </if>
-      <if test="houseType != null">
-        #{houseType,jdbcType=INTEGER},
-      </if>
-      <if test="ownerid != null">
-        #{ownerid,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
+
   <select id="countByExample" parameterType="com.dxyinme.demo.model.HouseExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
     select count(*) from house_table
@@ -199,7 +139,7 @@
     update house_table
     <set>
       <if test="record.houseId != null">
-        house_id = #{record.houseId,jdbcType=INTEGER},
+        house_id = #{record.houseId,jdbcType=VARCHAR},
       </if>
       <if test="record.houseLocation != null">
         house_location = #{record.houseLocation,jdbcType=LONGVARCHAR},
@@ -236,7 +176,7 @@
   <update id="updateByExample" parameterType="map">
     <!--@mbg.generated-->
     update house_table
-    set house_id = #{record.houseId,jdbcType=INTEGER},
+    set house_id = #{record.houseId,jdbcType=VARCHAR},
       house_location = #{record.houseLocation,jdbcType=LONGVARCHAR},
       house_area = #{record.houseArea,jdbcType=INTEGER},
       house_price = #{record.housePrice,jdbcType=INTEGER},
@@ -282,7 +222,7 @@
         ownerid = #{ownerid,jdbcType=INTEGER},
       </if>
     </set>
-    where house_id = #{houseId,jdbcType=INTEGER}
+    where house_id = #{houseId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.dxyinme.demo.model.House">
     <!--@mbg.generated-->
@@ -296,6 +236,6 @@
       house_state = #{houseState,jdbcType=INTEGER},
       house_type = #{houseType,jdbcType=INTEGER},
       ownerid = #{ownerid,jdbcType=INTEGER}
-    where house_id = #{houseId,jdbcType=INTEGER}
+    where house_id = #{houseId,jdbcType=VARCHAR}
   </update>
 </mapper>
