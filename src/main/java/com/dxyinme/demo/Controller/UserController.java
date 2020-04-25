@@ -51,6 +51,18 @@ public class UserController {
     @Resource(name="commentInsert2")
     private Destination commentInsert2;
 
+    @Resource(name="subscribeInsert")
+    private Destination subscribeInsert;
+
+    @Resource(name="subscribeInsert2")
+    private Destination subscribeInsert2;
+
+    @Resource(name="subscribeDelete")
+    private Destination subscribeDelete;
+
+    @Resource(name="subscribeDelete2")
+    private Destination subscribeDelete2;
+
 
     @ApiOperation(value = "登录" , response = HttpResponse.class)
     @PostMapping("usersystem/login")
@@ -156,4 +168,40 @@ public class UserController {
         return new HttpResponse(CONSTLIST.OK , "add success");
     }
 
+    @ApiOperation(value = "用户关注房子" , response = HttpResponse.class)
+    @PostMapping(value = "usersystem/subscribe")
+    public HttpResponse subscribe(
+            HttpServletRequest request,
+            @RequestParam(value = "houseId") String houseId
+    ){
+        Integer userId = (Integer) request.getSession().getAttribute("id");
+        if(userId == null){
+            return new HttpResponse(CONSTLIST.FAIL , "login first");
+        }
+        Subscribe subscribe = new Subscribe(userId , houseId
+                , new Date(System.currentTimeMillis()).toString());
+        Gson gson = new Gson(); String v = gson.toJson(subscribe);
+        jmsTemplate.convertAndSend(subscribeInsert,v);
+        jmsTemplate.convertAndSend(subscribeInsert2,v);
+        return new HttpResponse(CONSTLIST.OK , "subscribe success");
+    }
+
+
+    @ApiOperation(value = "用户取消关注房子" , response = HttpResponse.class)
+    @PostMapping(value = "usersystem/subscribeDelete")
+    public HttpResponse subscribeDelete(
+            HttpServletRequest request,
+            @RequestParam(value = "houseId") String houseId
+    ){
+        Integer userId = (Integer) request.getSession().getAttribute("id");
+        if(userId == null){
+            return new HttpResponse(CONSTLIST.FAIL , "login first");
+        }
+        Subscribe subscribe = new Subscribe(userId , houseId
+                , null);
+        Gson gson = new Gson(); String v = gson.toJson(subscribe);
+        jmsTemplate.convertAndSend(subscribeDelete,v);
+        jmsTemplate.convertAndSend(subscribeDelete2,v);
+        return new HttpResponse(CONSTLIST.OK , "subscribe success");
+    }
 }

@@ -22,6 +22,7 @@ public class HouseController {
     @Autowired
     HouseService houseService;
 
+
     @ApiOperation(value = "按照地址查询" , response = HttpResponse.class)
     @GetMapping(value = "/housesystem/location/{location}")
     public HttpResponse searchHouseByLocation(
@@ -38,6 +39,7 @@ public class HouseController {
     }
 
 
+    @ApiOperation(value = "按照户型查询" , response = HttpResponse.class)
     @GetMapping(value = "/housesystem/type/{type}")
     public HttpResponse searchHouseByType(
             @PathVariable("type") Integer Type
@@ -51,6 +53,8 @@ public class HouseController {
         return new HttpResponse(CONSTLIST.OK , "load success" , res);
     }
 
+
+    @ApiOperation(value = "按照面积查询" , response = HttpResponse.class)
     @GetMapping(value = "/housesystem/Area/{minArea}-{maxArea}")
     public HttpResponse searchHouseByArea(
             @PathVariable("minArea") Integer minArea,
@@ -65,6 +69,7 @@ public class HouseController {
         return new HttpResponse(CONSTLIST.OK , "load success" , res);
     }
 
+    @ApiOperation(value = "按照楼层查询" , response = HttpResponse.class)
     @GetMapping(value = "/housesystem/Floor/{minFloor}-{maxFloor}")
     public HttpResponse searchHouseByFloor(
             @PathVariable("minFloor") Integer minFloor,
@@ -77,6 +82,9 @@ public class HouseController {
         }
         return new HttpResponse(CONSTLIST.OK , "load success" , res);
     }
+
+
+    @ApiOperation(value = "按照价格查询" , response = HttpResponse.class)
     @GetMapping(value = "/housesystem/Price/{minPrice}-{maxPrice}")
     public HttpResponse searchHouseByPrice(
             @PathVariable("minPrice") Integer minPrice,
@@ -90,10 +98,20 @@ public class HouseController {
         return new HttpResponse(CONSTLIST.OK , "load success" , res);
     }
 
+
+    @ApiOperation(value = "按照houseId查询" , response = HttpResponse.class)
+    @GetMapping(value = "/housesystem/getHouseById")
+    public HttpResponse getHouseById(
+            @RequestParam(value = "houseId") String houseId
+    ){
+        House house = houseService.selectByPrimaryKey(houseId);
+        if(house == null) {
+            return new HttpResponse(CONSTLIST.FAIL , "no result");
+        }
+        return new HttpResponse(CONSTLIST.OK , "load success" , house);
+    }
+
     //以上是查询信息部分。
-
-
-
 
     @ApiOperation(value = "按照id下架/上架房子 , 0 是下架， 1 是上架", response = HttpResponse.class)
     @PostMapping(value = "/housesystem/opTypeHouse")
