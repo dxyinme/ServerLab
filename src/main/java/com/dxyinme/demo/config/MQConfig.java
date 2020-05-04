@@ -25,11 +25,12 @@ public class MQConfig {
     public Destination subscribeInsert(){ return new ActiveMQQueue("subscribeInsert");}
 
     @Bean
-    public Destination subscribeInsert2(){ return new ActiveMQQueue("subscribeInsert2");}
-
-    @Bean
     public Destination subscribeDelete(){ return new ActiveMQQueue("subscribeDelete");}
 
     @Bean
-    public Destination subscribeDelete2(){ return new ActiveMQQueue("subscribeDelete2");}
+    public Destination houseInsert() { return new ActiveMQQueue("houseInsert");}
+
+    @Bean
+    public Destination houseInsert2() { return new ActiveMQQueue("houseInsert2");}
+
 }

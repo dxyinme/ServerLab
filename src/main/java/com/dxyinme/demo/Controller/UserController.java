@@ -7,7 +7,6 @@ import com.dxyinme.demo.HttpResponse.HttpResponse;
 import com.dxyinme.demo.LogicAPI.SnowflakeIdWorker;
 import com.dxyinme.demo.LogicAPI.generator;
 import com.dxyinme.demo.model.*;
-import com.dxyinme.demo.service.CommentService;
 import com.dxyinme.demo.service.HouseService;
 import com.dxyinme.demo.service.OrderService;
 import com.dxyinme.demo.service.UserService;
@@ -15,6 +14,7 @@ import com.google.gson.Gson;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +40,6 @@ public class UserController {
     @Autowired
     OrderService orderService;
 
-
     @Autowired
     private JmsTemplate jmsTemplate;
 
@@ -53,14 +52,18 @@ public class UserController {
     @Resource(name="subscribeInsert")
     private Destination subscribeInsert;
 
-    @Resource(name="subscribeInsert2")
-    private Destination subscribeInsert2;
-
     @Resource(name="subscribeDelete")
     private Destination subscribeDelete;
 
-    @Resource(name="subscribeDelete2")
-    private Destination subscribeDelete2;
+    @Resource(name="houseInsert")
+    private Destination houseInsert;
+
+    @Resource(name="houseInsert2")
+    private Destination houseInsert2;
+
+
+    @Autowired
+    StringRedisTemplate stringRedisTemplate;
 
 
     @ApiOperation(value = "登录" , response = HttpResponse.class)
@@ -84,7 +87,13 @@ public class UserController {
         User nowUser = userList.get(0);
         if(nowUser.getPassWord().equals(password)) {
             request.getSession().setAttribute("id" , nowUser.getId());
-            return new HttpResponse(CONSTLIST.OK, "login success");
+            String stringList = stringRedisTemplate.opsForValue().get(nowUser.getId().toString());
+            System.out.println(stringList);
+            if (stringList == null || stringList.equals(CONSTLIST.NONE)) {
+                return new HttpResponse(CONSTLIST.OK, "login success");
+            }
+            List o = new Gson().fromJson(stringList,List.class);
+            return new HttpResponse(CONSTLIST.OK, "login success" , o);
         }
         else{
             return new HttpResponse(CONSTLIST.FAIL , "wrong password");
@@ -123,7 +132,10 @@ public class UserController {
         house.setOwnerid(userId);
         house.setHouseState(0);
         house.setHouseId(generator.getNewHouseId(userId));
-        houseService.insert(house);
+        String houseString = new Gson().toJson(house);
+        //houseService.insert(house);
+        jmsTemplate.convertAndSend(houseInsert , houseString);
+        jmsTemplate.convertAndSend(houseInsert2 , houseString);
         return new HttpResponse(CONSTLIST.OK , "load success");
     }
 
@@ -181,7 +193,7 @@ public class UserController {
                 , new Date(System.currentTimeMillis()).toString());
         Gson gson = new Gson(); String v = gson.toJson(subscribe);
         jmsTemplate.convertAndSend(subscribeInsert,v);
-        jmsTemplate.convertAndSend(subscribeInsert2,v);
+        //jmsTemplate.convertAndSend(subscribeInsert2,v);
         return new HttpResponse(CONSTLIST.OK , "subscribe success");
     }
 
@@ -200,7 +212,7 @@ public class UserController {
                 , null);
         Gson gson = new Gson(); String v = gson.toJson(subscribe);
         jmsTemplate.convertAndSend(subscribeDelete,v);
-        jmsTemplate.convertAndSend(subscribeDelete2,v);
-        return new HttpResponse(CONSTLIST.OK , "subscribe success");
+        //jmsTemplate.convertAndSend(subscribeDelete2,v);
+        return new HttpResponse(CONSTLIST.OK , "subscribe delete success");
     }
 }

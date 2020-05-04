@@ -1,8 +1,10 @@
 package com.dxyinme.demo.Component;
 
 import com.dxyinme.demo.model.Comment;
+import com.dxyinme.demo.model.House;
 import com.dxyinme.demo.model.Subscribe;
 import com.dxyinme.demo.service.CommentService;
+import com.dxyinme.demo.service.HouseService;
 import com.dxyinme.demo.service.SubscribeService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class insertComponent {
     @Autowired
     SubscribeService subscribeService;
 
+    @Autowired
+    HouseService houseService;
+
     @JmsListener(destination = "commentInsert")
     public void commentInsert(String message){
         System.out.println("insertComponent.commentInsert:" + message);
@@ -29,6 +34,12 @@ public class insertComponent {
     public void subscribeInsert(String message){
         System.out.println("insertComponent.subscribeInsert:" + message);
         subscribeService.insert(new Gson().fromJson(message, Subscribe.class));
+    }
+
+    @JmsListener(destination = "houseInsert")
+    public void houseInsert(String message){
+        System.out.println("insertComponent.houseInsert:" + message);
+        houseService.insert(new Gson().fromJson(message, House.class));
     }
 
 }

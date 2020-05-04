@@ -1,6 +1,7 @@
 package com.dxyinme.demo.Const;
 
 public class CONSTLIST {
+    public static final String NONE = "NONE";
     static public String admin = "root";
     static public String password = "13705034784";
     static public Integer INF = 1000000000;
