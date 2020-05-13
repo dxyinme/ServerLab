@@ -12,7 +12,7 @@ public class baiduAPI {
      * @param Address the address of this house .
      * @return string URL of this address .
      */
-    public String getMapByAddress(String Address) {
+    public static String getMapByAddress(String Address) {
         return  "http://api.map.baidu.com/geocoder?address=" +
                 Address +
                 "&output=html&src=webapp.baidu.openAPIdemo";
@@ -23,7 +23,7 @@ public class baiduAPI {
      * @param Address
      * @return a String of url to find it.
      */
-    public String getlLocationByAddress(String Address){
+    public static String getLocationByAddress(String Address){
         return "http://api.map.baidu.com/place/v2/search?query="+
                 Address+
                 "&region="+
@@ -42,7 +42,7 @@ public class baiduAPI {
      * @param Radius radius (meter)
      * @return
      */
-    public String getCircleSearch(String Type,Double lng ,Double lat , Integer Radius){
+    public static String getCircleSearch(String Type,Double lng ,Double lat , Integer Radius){
         return "http://api.map.baidu.com/place/v2/search?query="+
                 Type +
                 "&location="+
@@ -60,7 +60,7 @@ public class baiduAPI {
      * @param lat
      * @return a image around this Location.
      */
-    public String getImgByLocation(Double lng , Double lat){
+    public static String getImgByLocation(Double lng , Double lat){
         return "http://api.map.baidu.com/staticimage/v2?"
                 +"ak="+AK
                 +"&center=" + lng.toString() + "," + lat.toString()

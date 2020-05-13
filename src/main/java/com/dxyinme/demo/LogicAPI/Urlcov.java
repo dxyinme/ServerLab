@@ -22,7 +22,7 @@ public class Urlcov {
      * @param urlstring the target urlstring.
      * @return the Map translated from urlstring {"lat" : "XX" , "lng" : "XXX"} .
      */
-    public Map<String, Double> getPosition(String urlstring) {
+    public static Map<String, Double> getPosition(String urlstring) {
         Map<String, Double> res = new HashMap<>();
         String Info = "";
         try {
@@ -50,10 +50,10 @@ public class Urlcov {
         JSONObject jsb ;
         try {
             jsb = new JSONObject(Info);
-            JSONArray jsA = jsb.getJSONArray("results");
-            if (jsA.length() <= 0) {
+                JSONArray jsA = jsb.getJSONArray("results");
+                if (jsA.length() <= 0) {
                 System.err.println("null object");
-                return null;
+                return res;
             }
             JSONObject target = (JSONObject) jsA.get(0);
             JSONObject position = (JSONObject) target.get("location");
@@ -68,7 +68,7 @@ public class Urlcov {
         return res;
     }
 
-    public List<Map<String, String>> getSomeThing(String urlstring, String[] valueList) {
+    public static List<Map<String, String>> getSomeThing(String urlstring, String[] valueList) {
         List<Map<String, String>> res = new ArrayList<>();
         String Info = "";
         try {

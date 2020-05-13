@@ -1,17 +1,22 @@
 package com.dxyinme.demo.Controller;
 
 
+import com.dxyinme.demo.Const.baiduAPI;
 import com.dxyinme.demo.HttpResponse.HttpResponse;
+import com.dxyinme.demo.LogicAPI.Urlcov;
 import com.dxyinme.demo.model.House;
 import com.dxyinme.demo.model.HouseExample;
 import com.dxyinme.demo.service.HouseService;
+import com.google.gson.Gson;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.dxyinme.demo.Const.CONSTLIST;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Api(tags = {"房源接口"})
@@ -99,6 +104,8 @@ public class HouseController {
     }
 
 
+
+
     @ApiOperation(value = "按照houseId查询" , response = HttpResponse.class)
     @GetMapping(value = "/housesystem/getHouseById")
     public HttpResponse getHouseById(
@@ -108,7 +115,14 @@ public class HouseController {
         if(house == null) {
             return new HttpResponse(CONSTLIST.FAIL , "no result");
         }
-        return new HttpResponse(CONSTLIST.OK , "load success" , house);
+        Gson gson = new Gson();
+        String o = gson.toJson(house);
+        Map<String , Object> oMap = gson.fromJson(o, HashMap.class);
+        String url = baiduAPI.getLocationByAddress(house.getHouseLocation());
+        Map pos = Urlcov.getPosition(url);
+        System.err.println( " " + pos.get("lat") + " " + pos.get("lng"));
+        oMap.put("position" , pos);
+        return new HttpResponse(CONSTLIST.OK , "load success" , oMap);
     }
 
     //以上是查询信息部分。
