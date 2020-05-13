@@ -12,6 +12,7 @@ import com.dxyinme.demo.service.OrderService;
 import com.dxyinme.demo.service.UserService;
 import com.google.gson.Gson;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -90,8 +91,9 @@ public class UserController {
             String stringList = stringRedisTemplate.opsForValue().get(nowUser.getId().toString());
             System.out.println(stringList);
             if (stringList == null || stringList.equals(CONSTLIST.NONE)) {
-                return new HttpResponse(CONSTLIST.OK, "login success");
+                stringList = stringRedisTemplate.opsForValue().get(CONSTLIST.NONE);
             }
+            System.out.println("<" + stringList + ">");
             List o = new Gson().fromJson(stringList,List.class);
             return new HttpResponse(CONSTLIST.OK, "login success" , o);
         }
