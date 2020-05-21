@@ -10,7 +10,9 @@ public class CONSTLIST {
     static public int FAIL = 210;
 
 
-    static public String WAITING = "WATTING";
+    static public String WAITING = "WAITING";
     static public String FINISHED = "FINISHED";
     static public String REFUSED = "REFUSED";
+    static public String ACCEPTED = "ACCEPTED";
+    static public Integer[] AdminList = new Integer[]{10};
 }

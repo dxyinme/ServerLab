@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.management.ListenerNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +60,7 @@ public class orderController {
 
     @ApiOperation(value = "用户拒绝订单" , response = HttpResponse.class)
     @PostMapping("/order/refuseOrder")
-    public HttpResponse acceptOrder(
+    public HttpResponse refuseOrder(
             HttpServletRequest request,
             @RequestParam(value = "orderId") String orderId
     ){
@@ -73,7 +74,57 @@ public class orderController {
             house.getOwnerid().equals(userId))) {
             return new HttpResponse(CONSTLIST.FAIL , "not the owner of this order");
         }
+        order.setStatus(CONSTLIST.REFUSED);
+        orderService.updateByPrimaryKey(order);
+        return new HttpResponse(CONSTLIST.OK , "OK refused");
+    }
+
+    @ApiOperation(value = "用户同意订单" , response = HttpResponse.class)
+    @PostMapping("/order/acceptOrder")
+    public HttpResponse acceptOrder(
+            HttpServletRequest request,
+            @RequestParam(value = "orderId") String orderId
+    ){
+        Integer userId = (Integer) request.getSession().getAttribute("id");
+        if(userId == null) {
+            return new HttpResponse(CONSTLIST.FAIL , "login first");
+        }
+        Order order = orderService.selectByPrimaryKey(orderId);
+        House house = houseService.selectByPrimaryKey(order.getHouseId());
+        if (!(order.getUserId().equals(userId) ||
+                house.getOwnerid().equals(userId))) {
+            return new HttpResponse(CONSTLIST.FAIL , "not the owner of this order");
+        }
+        order.setStatus(CONSTLIST.ACCEPTED);
+        orderService.updateByPrimaryKey(order);
         return new HttpResponse(CONSTLIST.OK , "OK accepted");
     }
 
+    @ApiOperation(value = "管理员完成订单" , response = HttpResponse.class)
+    @PostMapping("/order/finishedOrder")
+    public HttpResponse finishedOrder(
+            HttpServletRequest request,
+            @RequestParam(value = "orderId") String orderId
+    ){
+        Integer userId = (Integer) request.getSession().getAttribute("id");
+        if(userId == null) {
+            return new HttpResponse(CONSTLIST.FAIL , "login first");
+        }
+        Order order = orderService.selectByPrimaryKey(orderId);
+        if (isNotAdmin(userId)) {
+            return new HttpResponse(CONSTLIST.FAIL , "not Admin");
+        }
+        order.setStatus(CONSTLIST.FINISHED);
+        orderService.updateByPrimaryKey(order);
+        return new HttpResponse(CONSTLIST.OK , "OK accepted");
+    }
+
+    private boolean isNotAdmin(Integer userId) {
+        for (Integer v : CONSTLIST.AdminList){
+            if (v.equals(userId)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
