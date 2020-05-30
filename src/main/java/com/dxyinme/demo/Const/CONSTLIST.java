@@ -1,5 +1,8 @@
 package com.dxyinme.demo.Const;
 
+/**
+ * constlist 各种常量
+ */
 public class CONSTLIST {
     public static final String NONE = "NONE";
     static public String admin = "root";
