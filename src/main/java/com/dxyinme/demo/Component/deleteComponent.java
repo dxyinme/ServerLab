@@ -21,5 +21,6 @@ public class deleteComponent {
         SubscribeExample subscribeExp = new SubscribeExample();
         subscribeExp.or().andHouseIdEqualTo(subscribe.getHouseId())
                     .andUserIdEqualTo(subscribe.getUserId());
+        subscribeService.deleteByExample(subscribeExp);
     }
 }
